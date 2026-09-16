@@ -47,15 +47,16 @@ header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid 
 </head>
 <body>
 <header><div class="logo">VELUXE</div><div class="icon-btn" onclick="toggleCart()">🛒<div id="cartCount" class="cart-count">0</div></div></header>
-<div class="hero"><h1>VELUXE<br><em>COLLECTION</em></h1><p>51 Pieces — Real Drip + Shoes — No Broken Images</p></div>
+<div class="hero"><h1>VELUXE<br><em>COLLECTION</em></h1><p>59 Pieces — Menswear + Baby Drip + Shoes</p></div>
 <div class="filters">
-<div class="filter active" onclick="filterCat('all',this)">ALL 51</div>
+<div class="filter active" onclick="filterCat('all',this)">ALL 59</div>
 <div class="filter" onclick="filterCat('tees',this)">TEES</div>
 <div class="filter" onclick="filterCat('cargos',this)">CARGOS</div>
 <div class="filter" onclick="filterCat('hoodies',this)">HOODIES</div>
 <div class="filter" onclick="filterCat('jackets',this)">JACKETS</div>
 <div class="filter" onclick="filterCat('caps',this)">CAPS</div>
-<div class="filter" onclick="filterCat('shoes',this)">SHOES 👞</div>
+<div class="filter" onclick="filterCat('shoes',this)">SHOES</div>
+<div class="filter" onclick="filterCat('baby',this)">BABY 👶</div>
 </div>
 <div id="products" class="products"></div>
 <div id="cartDrawer" class="cart-drawer" onclick="if(!event.target.closest('.cart-box'))toggleCart()">
@@ -74,6 +75,15 @@ header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid 
 <script>
 const productsData=[
 {id:51,name:"VELUXE Inspiration Stripe Shirt - REAL",price:68,old:90,cat:"tees",img:"inspiration.jpg",badge:"REAL DRIP 🔥"},
+// BABY COLLECTION - NEW!
+{id:52,name:"Baby Onesie - Cream Bear",price:25,old:35,cat:"baby",img:"https://images.unsplash.com/photo-1522771930-78848d9293e8?w=600",badge:"BABY NEW 👶"},
+{id:53,name:"Baby Set - Blue Stripes",price:32,old:45,cat:"baby",img:"https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=600",badge:"CUTE"},
+{id:54,name:"Baby Hoodie - Grey",price:28,old:38,cat:"baby",img:"https://images.unsplash.com/photo-1560506840-ec148e82a604?w=600",badge:"COZY"},
+{id:55,name:"Baby Shoes - White Soft",price:22,old:30,cat:"baby",img:"https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600",badge:"FIRST WALK"},
+{id:56,name:"Baby Tee - Mini VELUXE",price:18,old:26,cat:"baby",img:"https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600",badge:"MINI ME"},
+{id:57,name:"Baby Romper - Denim",price:30,old:42,cat:"baby",img:"https://images.unsplash.com/photo-1522771930-78848d9293e8?w=600",badge:"TRENDING"},
+{id:58,name:"Baby Beanie + Socks Set",price:20,old:28,cat:"baby",img:"https://images.unsplash.com/photo-1576871337622-98d48d1cf531?w=600",badge:"GIFT SET"},
+{id:59,name:"Baby Jacket - Puffer Cream",price:45,old:60,cat:"baby",img:"https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600",badge:"WINTER BABY"},
 {id:1,name:"Essential Tee - Black",price:45,old:60,cat:"tees",img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600",badge:"NEW"},
 {id:2,name:"Cargo Pant - Khaki",price:85,old:110,cat:"cargos",img:"https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600",badge:"BESTSELLER"},
 {id:3,name:"Hoodie - Onyx Black",price:95,old:120,cat:"hoodies",img:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600",badge:"LUXE"},
@@ -125,11 +135,11 @@ const productsData=[
 {id:49,name:"Jordan Retro - Red",price:185,old:230,cat:"shoes",img:"https://images.unsplash.com/photo-1551107696-a4b0c5a0d9a2?w=600",badge:"RARE"},
 {id:50,name:"Boot - Timber Brown",price:165,old:210,cat:"shoes",img:"https://images.unsplash.com/photo-1608256246200-53e635b5b65f?w=600",badge:"WINTER"}
 ];
-let cart=JSON.parse(localStorage.getItem("veluxe51")||"[]");
+let cart=JSON.parse(localStorage.getItem("veluxe59")||"[]");
 let activeCat="all";
 function renderProducts(){const c=document.getElementById("products");const f=activeCat=="all"?productsData:productsData.filter(p=>p.cat==activeCat);c.innerHTML=f.map(p=>`<div class="card"><div class="card-img"><img src="${p.img}" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600'">${p.badge?`<div class="badge">${p.badge}</div>`:``}</div><div class="card-info"><div class="card-title">${p.name}</div><div class="card-price"><span class="price">$${p.price}</span><span class="old">$${p.old}</span></div><button class="add" onclick="addToCart(${p.id})">Add to Cart</button></div></div>`).join("")}
 function addToCart(id){const p=productsData.find(x=>x.id==id);const ex=cart.find(x=>x.id==id);if(ex)ex.qty++;else cart.push({...p,qty:1});saveCart();renderCart();toggleCart(true)}
-function saveCart(){localStorage.setItem("veluxe51",JSON.stringify(cart));document.getElementById("cartCount").textContent=cart.reduce((s,i)=>s+i.qty,0)}
+function saveCart(){localStorage.setItem("veluxe59",JSON.stringify(cart));document.getElementById("cartCount").textContent=cart.reduce((s,i)=>s+i.qty,0)}
 function renderCart(){const c=document.getElementById("cartItems");if(!cart.length){c.innerHTML=`<div style="padding:50px;text-align:center;color:#999">CART EMPTY</div>`;updateTotal();return}c.innerHTML=cart.map((it,idx)=>`<div class="c-item"><div class="c-img"><img src="${it.img}" onerror="this.src='https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600'"></div><div style="flex:1"><div style="font-size:11px;font-weight:700;text-transform:uppercase">${it.name}</div><div style="display:flex;justify-content:space-between;margin-top:12px"><div style="display:flex;gap:8px;align-items:center;border:1px solid #eaeaea;border-radius:20px;padding:3px 8px"><button onclick="changeQty(${idx},-1)" style="width:22px;height:22px;border:0;background:#000;color:#fff;border-radius:50%;cursor:pointer">-</button><span style="font-size:12px">${it.qty}</span><button onclick="changeQty(${idx},1)" style="width:22px;height:22px;border:0;background:#000;color:#fff;border-radius:50%;cursor:pointer">+</button></div><span style="font-weight:800">$${it.price*it.qty}</span></div></div></div>`).join("");updateTotal()}
 function changeQty(idx,d){cart[idx].qty+=d;if(cart[idx].qty<=0)cart.splice(idx,1);saveCart();renderCart()}
 function updateTotal(){const sub=cart.reduce((s,i)=>s+i.price*i.qty,0);document.getElementById("subtotal").textContent="$"+sub;document.getElementById("total").textContent="$"+(sub+15)}
