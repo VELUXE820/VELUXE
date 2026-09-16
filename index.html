@@ -46,10 +46,10 @@ header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid 
 </style>
 </head>
 <body>
-<header><div class="logo">VELUXE</div><div class="icon-btn" onclick="toggleCart()">🛒<div id="cartCount" class="cart-count">0</div></div></header>
-<div class="hero"><h1>VELUXE<br><em>COLLECTION</em></h1><p>59 Pieces — Menswear + Baby Drip + Shoes</p></div>
+<header><div class="logo">VELUXE</div><div style="display:flex;gap:8px"><a href="admin.html" style="font-size:11px;padding:10px 16px;border:1px solid #000;border-radius:20px;text-decoration:none;color:#000;font-weight:700">ADMIN</a><div class="icon-btn" onclick="toggleCart()">🛒<div id="cartCount" class="cart-count">0</div></div></div></header>
+<div class="hero"><h1>VELUXE<br><em>COLLECTION</em></h1><p id="countText">59 Pieces</p></div>
 <div class="filters">
-<div class="filter active" onclick="filterCat('all',this)">ALL 59</div>
+<div class="filter active" onclick="filterCat('all',this)">ALL</div>
 <div class="filter" onclick="filterCat('tees',this)">TEES</div>
 <div class="filter" onclick="filterCat('cargos',this)">CARGOS</div>
 <div class="filter" onclick="filterCat('hoodies',this)">HOODIES</div>
@@ -59,23 +59,10 @@ header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid 
 <div class="filter" onclick="filterCat('baby',this)">BABY 👶</div>
 </div>
 <div id="products" class="products"></div>
-<div id="cartDrawer" class="cart-drawer" onclick="if(!event.target.closest('.cart-box'))toggleCart()">
-<div class="cart-bg"></div>
-<div class="cart-box">
-<div class="cart-head"><span>CART</span><span onclick="toggleCart()" style="cursor:pointer;font-size:20px">✕</span></div>
-<div id="cartItems" class="cart-items"></div>
-<div class="cart-foot">
-<div class="row"><span>Subtotal</span><span id="subtotal">$0</span></div>
-<div class="row"><span>Shipping</span><span>$15</span></div>
-<div class="row total"><span>Total</span><span id="total">$15</span></div>
-<button class="checkout" onclick="checkout()">Order via WhatsApp</button>
-</div>
-</div>
-</div>
+<div id="cartDrawer" class="cart-drawer" onclick="if(!event.target.closest('.cart-box'))toggleCart()"><div class="cart-bg"></div><div class="cart-box"><div class="cart-head"><span>CART</span><span onclick="toggleCart()" style="cursor:pointer;font-size:20px">✕</span></div><div id="cartItems" class="cart-items"></div><div class="cart-foot"><div class="row"><span>Subtotal</span><span id="subtotal">$0</span></div><div class="row"><span>Shipping</span><span>$15</span></div><div class="row total"><span>Total</span><span id="total">$15</span></div><button class="checkout" onclick="checkout()">Order via WhatsApp</button></div></div></div>
 <script>
-const productsData=[
+const defaultProducts=[
 {id:51,name:"VELUXE Inspiration Stripe Shirt - REAL",price:68,old:90,cat:"tees",img:"inspiration.jpg",badge:"REAL DRIP 🔥"},
-// BABY COLLECTION - NEW!
 {id:52,name:"Baby Onesie - Cream Bear",price:25,old:35,cat:"baby",img:"https://images.unsplash.com/photo-1522771930-78848d9293e8?w=600",badge:"BABY NEW 👶"},
 {id:53,name:"Baby Set - Blue Stripes",price:32,old:45,cat:"baby",img:"https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=600",badge:"CUTE"},
 {id:54,name:"Baby Hoodie - Grey",price:28,old:38,cat:"baby",img:"https://images.unsplash.com/photo-1560506840-ec148e82a604?w=600",badge:"COZY"},
@@ -94,50 +81,14 @@ const productsData=[
 {id:8,name:"Fleece - Charcoal",price:105,old:130,cat:"hoodies",img:"https://images.unsplash.com/photo-1516762689617-e1cffcef479d?w=600",badge:""},
 {id:9,name:"Distressed Tee - Grey",price:50,old:70,cat:"tees",img:"https://images.unsplash.com/photo-1578681994506-b8f463449011?w=600",badge:"NEW"},
 {id:10,name:"Wide-Leg Jeans",price:92,old:120,cat:"cargos",img:"https://images.unsplash.com/photo-1542272604-787c3835535d?w=600",badge:"TRENDING"},
-{id:11,name:"Zipped Hoodie - Cream",price:110,old:140,cat:"hoodies",img:"https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600",badge:"LUXE"},
-{id:12,name:"Bucket Hat - Khaki",price:32,old:45,cat:"caps",img:"https://images.unsplash.com/photo-1529391409740-59f1cea3f4a2?w=600",badge:""},
-{id:13,name:"Linen Shirt - Sand",price:65,old:85,cat:"tees",img:"https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600",badge:"SUMMER"},
-{id:14,name:"Tactical Cargo - Olive",price:98,old:125,cat:"cargos",img:"https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600",badge:"BESTSELLER"},
-{id:15,name:"Oversized Hoodie - Black",price:100,old:130,cat:"hoodies",img:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600",badge:"HOT"},
-{id:16,name:"Knit Polo - White",price:55,old:75,cat:"tees",img:"https://images.unsplash.com/photo-1586790170083-2f9ceadc732d?w=600",badge:"NEW"},
-{id:17,name:"Corduroy Cap - Brown",price:30,old:40,cat:"caps",img:"https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?w=600",badge:""},
-{id:18,name:"Sweatpants - Grey",price:75,old:95,cat:"cargos",img:"https://images.unsplash.com/photo-1552902875-9a28af05f0e7?w=600",badge:"COMFY"},
-{id:19,name:"Graphic Tee - Vintage",price:52,old:68,cat:"tees",img:"https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600",badge:"LIMITED"},
-{id:20,name:"Varsity Jacket",price:145,old:180,cat:"jackets",img:"https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600",badge:"RARE"},
-{id:21,name:"Mock Neck Tee - Black",price:46,old:62,cat:"tees",img:"https://images.unsplash.com/photo-1618354691792-d1d42acfd860?w=600",badge:"NEW"},
-{id:22,name:"Denim Cargo - Washed",price:95,old:125,cat:"cargos",img:"https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=600",badge:""},
-{id:23,name:"Sherpa Jacket - Cream",price:155,old:195,cat:"jackets",img:"https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600",badge:"WINTER"},
-{id:24,name:"Beanie - Black",price:22,old:30,cat:"caps",img:"https://images.unsplash.com/photo-1576871337622-98d48d1cf531?w=600",badge:""},
-{id:25,name:"Long Sleeve - White",price:58,old:75,cat:"tees",img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600",badge:""},
-{id:26,name:"Nylon Shorts - Black",price:48,old:65,cat:"cargos",img:"https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=600",badge:"SUMMER"},
-{id:27,name:"Puffer Vest - Onyx",price:125,old:160,cat:"jackets",img:"https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600",badge:"NEW"},
-{id:28,name:"Ribbed Tee - Brown",price:44,old:60,cat:"tees",img:"https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600",badge:""},
-{id:29,name:"Stacked Jeans - Black",price:105,old:135,cat:"cargos",img:"https://images.unsplash.com/photo-1542272604-787c3835535d?w=600",badge:"HOT"},
-{id:30,name:"Zip Hoodie - Grey",price:98,old:125,cat:"hoodies",img:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600",badge:""},
-{id:31,name:"Dad Cap - Beige",price:26,old:34,cat:"caps",img:"https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600",badge:""},
-{id:32,name:"Henley Tee - Charcoal",price:50,old:68,cat:"tees",img:"https://images.unsplash.com/photo-1578681994506-b8f463449011?w=600",badge:""},
-{id:33,name:"Leather Jacket - Noir",price:195,old:250,cat:"jackets",img:"https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600",badge:"LUXE"},
-{id:34,name:"Cargo Shorts - Khaki",price:62,old:80,cat:"cargos",img:"https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=600",badge:""},
-{id:35,name:"Cropped Hoodie - White",price:88,old:110,cat:"hoodies",img:"https://images.unsplash.com/photo-1620799139652-715f5a4d95b8?w=600",badge:"NEW"},
-{id:36,name:"5-Panel Cap - Black",price:28,old:38,cat:"caps",img:"https://images.unsplash.com/photo-1529391409740-59f1cea3f4a2?w=600",badge:""},
-{id:37,name:"Heavyweight Tee - Forest",price:54,old:72,cat:"tees",img:"https://images.unsplash.com/photo-1618354691792-d1d42acfd860?w=600",badge:"BESTSELLER"},
-{id:38,name:"Track Pants - Black",price:82,old:105,cat:"cargos",img:"https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?w=600",badge:""},
-{id:39,name:"Bomber Jacket - Olive",price:135,old:175,cat:"jackets",img:"https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600",badge:"HOT"},
-{id:40,name:"Waffle Knit - Cream",price:68,old:88,cat:"tees",img:"https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600",badge:"WINTER"},
 {id:41,name:"Runner - Triple Black",price:125,old:160,cat:"shoes",img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600",badge:"NEW"},
 {id:42,name:"Air Max - White/Gum",price:140,old:180,cat:"shoes",img:"https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600",badge:"BESTSELLER"},
-{id:43,name:"Loafer - Suede Brown",price:110,old:150,cat:"shoes",img:"https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=600",badge:"LUXE"},
-{id:44,name:"Chunky Sneaker - Cream",price:135,old:175,cat:"shoes",img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=600",badge:"TRENDING"},
-{id:45,name:"Slide - Black",price:45,old:65,cat:"shoes",img:"https://images.unsplash.com/photo-1603808033192-082d6919d3e1?w=600",badge:"SUMMER"},
-{id:46,name:"High Top - Onyx",price:130,old:170,cat:"shoes",img:"https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=600",badge:"HOT"},
-{id:47,name:"Derby - Leather Black",price:155,old:200,cat:"shoes",img:"https://images.unsplash.com/photo-1614252369475-531eba835eb1?w=600",badge:"FORMAL"},
-{id:48,name:"Foam Runner - Grey",price:115,old:145,cat:"shoes",img:"https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600",badge:"COMFY"},
-{id:49,name:"Jordan Retro - Red",price:185,old:230,cat:"shoes",img:"https://images.unsplash.com/photo-1551107696-a4b0c5a0d9a2?w=600",badge:"RARE"},
-{id:50,name:"Boot - Timber Brown",price:165,old:210,cat:"shoes",img:"https://images.unsplash.com/photo-1608256246200-53e635b5b65f?w=600",badge:"WINTER"}
+{id:43,name:"Loafer - Suede Brown",price:110,old:150,cat:"shoes",img:"https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=600",badge:"LUXE"}
 ];
+let productsData=JSON.parse(localStorage.getItem("veluxe_custom_products")||"null")||defaultProducts;
 let cart=JSON.parse(localStorage.getItem("veluxe59")||"[]");
 let activeCat="all";
-function renderProducts(){const c=document.getElementById("products");const f=activeCat=="all"?productsData:productsData.filter(p=>p.cat==activeCat);c.innerHTML=f.map(p=>`<div class="card"><div class="card-img"><img src="${p.img}" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600'">${p.badge?`<div class="badge">${p.badge}</div>`:``}</div><div class="card-info"><div class="card-title">${p.name}</div><div class="card-price"><span class="price">$${p.price}</span><span class="old">$${p.old}</span></div><button class="add" onclick="addToCart(${p.id})">Add to Cart</button></div></div>`).join("")}
+function renderProducts(){document.getElementById("countText").textContent=productsData.length+" Pieces";const c=document.getElementById("products");const f=activeCat=="all"?productsData:productsData.filter(p=>p.cat==activeCat);c.innerHTML=f.map(p=>`<div class="card"><div class="card-img"><img src="${p.img}" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600'">${p.badge?`<div class="badge">${p.badge}</div>`:``}</div><div class="card-info"><div class="card-title">${p.name}</div><div class="card-price"><span class="price">$${p.price}</span><span class="old">$${p.old}</span></div><button class="add" onclick="addToCart(${p.id})">Add to Cart</button></div></div>`).join("")}
 function addToCart(id){const p=productsData.find(x=>x.id==id);const ex=cart.find(x=>x.id==id);if(ex)ex.qty++;else cart.push({...p,qty:1});saveCart();renderCart();toggleCart(true)}
 function saveCart(){localStorage.setItem("veluxe59",JSON.stringify(cart));document.getElementById("cartCount").textContent=cart.reduce((s,i)=>s+i.qty,0)}
 function renderCart(){const c=document.getElementById("cartItems");if(!cart.length){c.innerHTML=`<div style="padding:50px;text-align:center;color:#999">CART EMPTY</div>`;updateTotal();return}c.innerHTML=cart.map((it,idx)=>`<div class="c-item"><div class="c-img"><img src="${it.img}" onerror="this.src='https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600'"></div><div style="flex:1"><div style="font-size:11px;font-weight:700;text-transform:uppercase">${it.name}</div><div style="display:flex;justify-content:space-between;margin-top:12px"><div style="display:flex;gap:8px;align-items:center;border:1px solid #eaeaea;border-radius:20px;padding:3px 8px"><button onclick="changeQty(${idx},-1)" style="width:22px;height:22px;border:0;background:#000;color:#fff;border-radius:50%;cursor:pointer">-</button><span style="font-size:12px">${it.qty}</span><button onclick="changeQty(${idx},1)" style="width:22px;height:22px;border:0;background:#000;color:#fff;border-radius:50%;cursor:pointer">+</button></div><span style="font-weight:800">$${it.price*it.qty}</span></div></div></div>`).join("");updateTotal()}
