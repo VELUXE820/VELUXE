@@ -2,133 +2,119 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VELUXE FAMILY - Trusted Store</title>
+<title>VELUXE ADMIN - Upload Picture</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Space Grotesk',sans-serif;background:#fff;color:#0a0a0a}
-header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #eaeaea;display:flex;justify-content:space-between;padding:16px 20px;align-items:center}
-.logo{font-size:26px;font-weight:700;letter-spacing:5px}.h-right{display:flex;gap:10px;align-items:center}
-.icon-btn{width:42px;height:42px;border:1px solid #eaeaea;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;position:relative;cursor:pointer}
-.admin-btn{height:42px;padding:0 18px;border-radius:20px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;letter-spacing:1px;cursor:pointer}
-.cart-count{position:absolute;top:-5px;right:-5px;background:#000;color:#fff;font-size:10px;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700}
-.hero{padding:28px 20px 10px}.hero h1{font-size:44px;line-height:.9}.hero p{color:#888;font-size:12px;margin-top:10px}
-.trust-bar{display:flex;gap:8px;padding:12px 20px;background:#f8f8f8;border-bottom:1px solid #eaeaea;overflow-x:auto}.trust-bar::-webkit-scrollbar{display:none}.trust-item{white-space:nowrap;background:#fff;border:1px solid #eaeaea;border-radius:20px;padding:6px 12px;font-size:9px;font-weight:700}
-.search-box{margin:16px 20px 0;position:relative}.search-box input{width:100%;height:50px;padding:0 20px 0 45px;border:1px solid #eaeaea;border-radius:30px;background:#fafafa;outline:none}.search-box span{position:absolute;left:16px;top:50%;transform:translateY(-50%)}
-.filters{display:flex;gap:8px;overflow-x:auto;padding:14px 20px;position:sticky;top:65px;background:#fff;z-index:10}.filters::-webkit-scrollbar{display:none}.filter{white-space:nowrap;padding:11px 18px;border:1px solid #eaeaea;border-radius:30px;background:#fff;font-size:10px;font-weight:700;cursor:pointer}.filter.active{background:#000;color:#fff}
-.products{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}.card{border:1px solid #eaeaea;border-radius:20px;overflow:hidden}.card-img{aspect-ratio:1/1.15;background:#f5f5f5;position:relative}.card-img img{width:100%;height:100%;object-fit:cover}.badge{position:absolute;top:10px;left:10px;background:#fff;padding:5px 10px;border-radius:20px;font-size:8px;font-weight:700}
-.card-info{padding:12px}.card-title{font-size:10px;font-weight:700;text-transform:uppercase;min-height:28px}.stock{font-size:9px;margin-top:5px;font-weight:800}.stock.low{color:#ff3b30}.stock.ok{color:#00b050}.add{margin-top:8px;width:100%;height:40px;border:0;background:#000;color:#fff;border-radius:12px;font-weight:700;font-size:10px;cursor:pointer}.add:disabled{background:#e5e5e5}
-.size-modal{position:fixed;inset:0;z-index:200;display:none}.size-modal.show{display:flex;align-items:center;justify-content:center}.size-bg{position:absolute;inset:0;background:rgba(0,0,0,.6)}.size-box{position:relative;background:#fff;border-radius:20px;padding:24px;width:90%;max-width:360px}.sizes{display:flex;gap:8px;margin-bottom:18px}.size-opt{flex:1;height:44px;border:1px solid #eaeaea;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:700;cursor:pointer}.size-opt.active{background:#000;color:#fff}
-.cart-drawer{position:fixed;inset:0;z-index:100;display:none}.cart-drawer.show{display:block}.cart-bg{position:absolute;inset:0;background:rgba(0,0,0,.45)}.cart-box{position:absolute;right:0;top:0;bottom:0;width:100%;max-width:400px;background:#fff;display:flex;flex-direction:column}.cart-head{padding:22px;display:flex;justify-content:space-between;border-bottom:1px solid #eaeaea;font-weight:800}.cart-items{flex:1;overflow:auto;padding:14px;display:flex;flex-direction:column;gap:12px}.c-item{display:flex;gap:12px;border:1px solid #eaeaea;padding:10px;border-radius:16px}.c-img{width:75px;height:85px;background:#f5f5f5;border-radius:12px;overflow:hidden}.cart-foot{padding:20px;border-top:1px solid #eaeaea;background:#fafafa}.row{display:flex;justify-content:space-between;margin-bottom:8px;font-size:12px}.row.total{font-weight:800;font-size:18px;margin-top:10px}
-.checkout{width:100%;height:54px;background:#000;color:#fff;border:0;border-radius:14px;font-weight:800;font-size:12px;letter-spacing:1px;margin-top:10px;cursor:pointer}.checkout.call{background:#fff;color:#000;border:1px solid #000}.checkout.wa{background:#25D366}
-.contact-box{padding:30px 20px;background:#0a0a0a;color:#fff;margin-top:20px}.contact-box h3{font-size:14px;letter-spacing:2px;margin-bottom:14px}.contact-item{display:flex;gap:10px;margin-bottom:12px;font-size:12px;align-items:center}.contact-item a{color:#fff;text-decoration:none}
-.wa-float{position:fixed;bottom:90px;right:20px;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 8px 24px rgba(0,0,0,.2);z-index:90;cursor:pointer}
-.call-float{position:fixed;bottom:20px;right:20px;width:56px;height:56px;background:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 8px 24px rgba(0,0,0,.2);z-index:90;cursor:pointer;color:#fff;border:1px solid #fff}
-@media(min-width:768px){.products{grid-template-columns:repeat(4,1fr)}}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Space Grotesk',sans-serif;background:#fafafa;padding:20px}
+.box{max-width:600px;margin:0 auto;background:#fff;border:1px solid #eaeaea;border-radius:20px;padding:24px}
+h1{font-size:20px;letter-spacing:3px;margin-bottom:20px;text-align:center;line-height:1.3}
+input,select{width:100%;padding:14px;border:1px solid #eaeaea;border-radius:12px;margin-bottom:10px;font-size:14px;outline:none}
+label{font-size:10px;font-weight:800;letter-spacing:1px;margin-bottom:4px;display:block;margin-top:12px}
+.upload-box{border:2px dashed #000;border-radius:16px;padding:20px;text-align:center;background:#fafafa;margin-bottom:10px;cursor:pointer}
+.upload-box input{display:none}
+.preview{width:100%;height:200px;background:#f5f5f5;border-radius:12px;margin-bottom:10px;overflow:hidden;display:none}
+.preview img{width:100%;height:100%;object-fit:cover}
+.btn{width:100%;height:54px;background:#000;color:#fff;border:0;border-radius:14px;font-weight:800;letter-spacing:2px;cursor:pointer;margin-top:10px}
+.btn2{width:100%;height:44px;background:#fff;border:1px solid #000;border-radius:14px;font-weight:700;margin-top:10px;cursor:pointer}
+.prod-list{margin-top:20px;display:flex;flex-direction:column;gap:10px}
+.p-item{display:flex;gap:10px;border:1px solid #eaeaea;padding:10px;border-radius:14px;align-items:center}
+.p-img{width:60px;height:60px;background:#f5f5f5;border-radius:10px;overflow:hidden;flex-shrink:0}.p-img img{width:100%;height:100%;object-fit:cover}
 </style>
 </head>
 <body>
-<header><div class="logo">VELUXE</div><div class="h-right"><div class="admin-btn" id="adminBtn">ADMIN</div><div class="icon-btn" onclick="toggleCart()">🛒<div id="cartCount" class="cart-count">0</div></div></div></header>
-<div class="hero"><h1>VELUXE<br><em style="font-weight:400;letter-spacing:3px;font-style:normal">FAMILY</em></h1><p id="countText"></p></div>
-<div class="trust-bar" id="trustBar"></div>
-<div class="search-box"><span>🔍</span><input id="searchInput" type="text" placeholder="Search mens, womens, baby..." oninput="handleSearch(this.value)"></div>
-<div class="filters">
-<div class="filter active" onclick="filterCat('all',this)">ALL</div>
-<div class="filter" onclick="filterCat('mens',this)">MENS 👨</div>
-<div class="filter" onclick="filterCat('womens',this)">WOMENS 👩</div>
-<div class="filter" onclick="filterCat('baby',this)">BABY 👶</div>
-<div class="filter" onclick="filterCat('shoes',this)">SHOES</div>
-<div class="filter" onclick="filterCat('tees',this)">TEES</div>
+<div class="box">
+<h1>VELUXE ADMIN -<br>UPLOAD PICTURE 🔥📸</h1>
+
+<label>Product Name</label>
+<input id="pName" placeholder="e.g Womens Satin Dress Black">
+
+<label>Category</label>
+<select id="pCat">
+<option value="womens">WOMENS 👩</option>
+<option value="mens">MENS 👨</option>
+<option value="baby">BABY 👶</option>
+<option value="shoes">SHOES</option>
+<option value="tees">TEES</option>
+</select>
+
+<label>Price ($)</label>
+<input id="pPrice" type="number" placeholder="e.g 78">
+
+<label>Old Price ($)</label>
+<input id="pOld" type="number" placeholder="e.g 105">
+
+<label>Stock Amount</label>
+<input id="pStock" type="number" placeholder="e.g 10 - how many available">
+
+<label>Product Picture - CLICK TO UPLOAD FROM PHONE</label>
+<div class="upload-box" onclick="document.getElementById('pFile').click()">
+<div id="uploadText">📸 TAP TO CHOOSE PICTURE<br><span style="font-size:10px;color:#888">From gallery or camera</span></div>
+<input id="pFile" type="file" accept="image/*" onchange="handleFile(this)">
 </div>
-<div id="products" class="products"></div>
-<div class="contact-box" id="contactBox"></div>
-<div id="sizeModal" class="size-modal"><div class="size-bg" onclick="closeSize()"></div><div class="size-box"><div style="font-weight:800;margin-bottom:14px;font-size:12px;letter-spacing:1px">SELECT SIZE</div><div class="sizes"><div class="size-opt" onclick="selectSize('S',this)">S</div><div class="size-opt" onclick="selectSize('M',this)">M</div><div class="size-opt active" onclick="selectSize('L',this)">L</div><div class="size-opt" onclick="selectSize('XL',this)">XL</div></div><button class="add" onclick="confirmAdd()">CONFIRM</button></div></div>
-<div class="wa-float" id="waFloat">💬</div>
-<div class="call-float" id="callFloat">📞</div>
-<div id="cartDrawer" class="cart-drawer"><div class="cart-bg" onclick="toggleCart()"></div><div class="cart-box"><div class="cart-head"><span>CART</span><span onclick="toggleCart()" style="cursor:pointer;font-size:22px">✕</span></div><div id="cartItems" class="cart-items"></div><div class="cart-foot"><div class="row"><span>Subtotal</span><span id="subtotal">$0</span></div><div class="row total"><span>Total + Shipping</span><span id="total">$0</span></div><button class="checkout wa" id="waCheckout">💬 ORDER VIA WHATSAPP</button><button class="checkout call" id="callCheckout">📞 CALL TO ORDER</button><div style="font-size:9px;color:#888;text-align:center;margin-top:10px" id="trustNote"></div></div></div></div>
+<div id="preview" class="preview"><img id="previewImg" src=""></div>
+
+<label>OR Image URL (if you no upload picture)</label>
+<input id="pImg" placeholder="https://... or leave empty if you uploaded">
+
+<label>Badge Text</label>
+<input id="pBadge" placeholder="e.g WOMENS NEW or LOW STOCK!">
+
+<button class="btn" onclick="saveProduct()">SAVE PRODUCT WITH PICTURE</button>
+<button class="btn2" onclick="location.href='index.html'">← BACK TO STORE</button>
+<button class="btn2" style="border-color:red;color:red" onclick="clearAll()">CLEAR ALL CUSTOM</button>
+
+<div id="list" class="prod-list"></div>
+</div>
 
 <script>
-// ========= CHANGE NUMBER ONLY HERE - WHEN BUYER BUY =========
-const STORE_PHONE = "2347067087764"; // Country code + number - NO + sign - For WhatsApp link & call
-const STORE_DISPLAY = "0706 708 7764"; // How people see am
-const STORE_EMAIL = "veluxe820@gmail.com";
-const STORE_LOCATION = "Ibadan, Oyo State - We dey deliver everywhere for Nigeria";
-// ============================================================
+let uploadedBase64 = "";
+let products=JSON.parse(localStorage.getItem("veluxe_custom_products")||"null")||[];
 
-// ADMIN BUTTON FIX - Works for GitHub Pages
-document.getElementById('adminBtn').addEventListener('click', function(){
-  const base = window.location.href.substring(0, window.location.href.lastIndexOf('/')+1);
-  window.location.href = base + 'admin.html';
-});
-
-// Update all phone places automatically
-document.getElementById('trustBar').innerHTML = `
-<div class="trust-item">✅ VERIFIED SELLER</div>
-<div class="trust-item">📞 CALL TO ORDER: ${STORE_DISPLAY}</div>
-<div class="trust-item">🚚 DELIVERY IN IBADAN SAME DAY</div>
-<div class="trust-item">💬 WHATSAPP 24/7</div>
-<div class="trust-item">⭐ 4.9/5 (127 REVIEWS)</div>
-`;
-document.getElementById('contactBox').innerHTML = `
-<h3>CONTACT US - WE NO BE SCAM! 😊</h3>
-<div class="contact-item">📞 <a href="tel:+${STORE_PHONE}">Call Us: ${STORE_DISPLAY} (Tap to Call)</a></div>
-<div class="contact-item">💬 <a href="https://wa.me/${STORE_PHONE}" target="_blank">WhatsApp: ${STORE_DISPLAY} (Tap to Chat)</a></div>
-<div class="contact-item">📍 ${STORE_LOCATION}</div>
-<div class="contact-item">✉️ ${STORE_EMAIL}</div>
-<div class="contact-item">⏰ Open: 8AM - 10PM Everyday</div>
-<div style="margin-top:16px;padding:12px;background:#1a1a1a;border-radius:12px;font-size:10px;line-height:1.5">
-<b style="letter-spacing:1px">WHY TRUST US?</b><br>
-✅ You fit call us make we video call show you product<br>
-✅ Pay on delivery for Ibadan<br>
-✅ Free return if no be wetin you order<br>
-✅ 127+ happy customers for Lagos, Abuja, PH
-</div>
-`;
-document.getElementById('waFloat').onclick = () => window.open(`https://wa.me/${STORE_PHONE}`,'_blank');
-document.getElementById('callFloat').onclick = () => window.location.href = `tel:+${STORE_PHONE}`;
-document.getElementById('callCheckout').textContent = `📞 CALL TO ORDER - ${STORE_DISPLAY}`;
-document.getElementById('trustNote').textContent = `Tap WhatsApp to chat or Call ${STORE_DISPLAY} to speak directly - No scam!`;
-
-const defaultProducts=[
-{id:100,name:"Womens Satin Dress Black",price:78,old:105,cat:"womens",stock:7,img:"https://images.unsplash.com/photo-1515372039744-b8f02a3c67ae?w=600",badge:"WOMENS 👩"},
-{id:101,name:"Womens Crop Top + Cargo Set Beige",price:85,old:115,cat:"womens",stock:12,img:"https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=600",badge:"WOMENS NEW"},
-{id:60,name:"Mens VELUXE Stripe Shirt REAL",price:68,old:90,cat:"mens",stock:15,img:"inspiration.jpg",badge:"MENS REAL 🔥"},
-{id:61,name:"Mens Essential Tee Black",price:45,old:60,cat:"mens",stock:25,img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600",badge:"MENS"},
-{id:52,name:"Baby Onesie Cream Bear",price:25,old:35,cat:"baby",stock:30,img:"https://images.unsplash.com/photo-1522771930-78848d9293e8?w=600",badge:"BABY 👶"},
-{id:53,name:"Baby Set Blue Stripes",price:32,old:45,cat:"baby",stock:18,img:"https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=600",badge:"BABY"}
-];
-let productsData=JSON.parse(localStorage.getItem("veluxe_custom_products")||"null")||defaultProducts;
-let cart=JSON.parse(localStorage.getItem("veluxe59")||"[]");
-let activeCat="all"; let searchQ=""; let pending=null; let selSize="L";
-function handleSearch(q){searchQ=q.toLowerCase();renderProducts()}
-function renderProducts(){
-document.getElementById("countText").textContent=productsData.length+" PIECES - CALL "+STORE_DISPLAY;
-let f=activeCat=="all"?productsData:productsData.filter(p=>p.cat==activeCat);
-if(searchQ)f=f.filter(p=>p.name.toLowerCase().includes(searchQ));
-document.getElementById("products").innerHTML=f.map(p=>{
-const s=p.stock??0;
-const cls=s<=5?"low":"ok";
-const txt=s<=0?"OUT OF STOCK":s<=5?`Only ${s} left! 🔥`:`${s} in stock ✅`;
-return `<div class="card"><div class="card-img"><img src="${p.img}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600'"><div class="badge">${p.badge}</div></div><div class="card-info"><div class="card-title">${p.name}</div><div class="stock ${cls}">${txt}</div><div style="font-size:13px;font-weight:800;margin-top:4px">$${p.price} <span style="text-decoration:line-through;color:#888;font-size:10px">$${p.old}</span></div><button class="add" ${s<=0?"disabled":""} onclick="openSize(${p.id})">${s<=0?"Sold Out":"Add to Cart"}</button></div></div>`
-}).join("")}
-function openSize(id){const prod=productsData.find(x=>x.id==id);if((prod.stock||0)<=0)return alert("Out of stock! Call "+STORE_DISPLAY);pending=prod;document.getElementById("sizeModal").classList.add("show")}
-function closeSize(){document.getElementById("sizeModal").classList.remove("show")}
-function selectSize(s,el){selSize=s;document.querySelectorAll(".size-opt").forEach(o=>o.classList.remove("active"));el.classList.add("active")}
-function confirmAdd(){const p=pending;if(!p)return;const nid=p.id+"-"+selSize;const ex=cart.find(x=>x.id==nid);if(ex){if(ex.qty>=p.stock)return alert("Only "+p.stock+" left!");ex.qty++;}else cart.push({...p,id:nid,name:p.name+" ("+selSize+")",qty:1});saveCart();renderCart();closeSize();toggleCart(true)}
-function saveCart(){localStorage.setItem("veluxe59",JSON.stringify(cart));document.getElementById("cartCount").textContent=cart.reduce((s,i)=>s+i.qty,0)}
-function renderCart(){
-const c=document.getElementById("cartItems");
-if(!cart.length){c.innerHTML=`<div style="padding:40px;text-align:center;color:#999">CART EMPTY<br><br><a href="tel:+${STORE_PHONE}" style="background:#000;color:#fff;padding:10px 20px;border-radius:20px;text-decoration:none">📞 Call ${STORE_DISPLAY}</a></div>`;updateTotal();return}
-c.innerHTML=cart.map((it,idx)=>`<div class="c-item"><div class="c-img"><img src="${it.img}"></div><div style="flex:1"><div style="font-size:11px;font-weight:700">${it.name}</div><div style="display:flex;justify-content:space-between;margin-top:10px"><span style="font-weight:800">$${it.price*it.qty}</span><button onclick="cart.splice(${idx},1);saveCart();renderCart()" style="border:0;background:#000;color:#fff;padding:4px 10px;border-radius:10px">X</button></div></div></div>`).join("");
-updateTotal()
+function handleFile(input){
+const file=input.files[0];
+if(!file)return;
+if(file.size>3000000){ alert("Picture too big! Choose smaller pic (<3MB)"); return; }
+const reader=new FileReader();
+reader.onload=function(e){
+uploadedBase64=e.target.result;
+document.getElementById('preview').style.display='block';
+document.getElementById('previewImg').src=uploadedBase64;
+document.getElementById('uploadText').innerHTML="✅ Picture ready! Tap to change";
+};
+reader.readAsDataURL(file);
 }
-function updateTotal(){const sub=cart.reduce((s,i)=>s+i.price*i.qty,0);document.getElementById("subtotal").textContent="$"+sub;document.getElementById("total").textContent="$"+(sub+15)}
-function toggleCart(f){const d=document.getElementById("cartDrawer");if(f===true){d.classList.add("show");return}if(f===false){d.classList.remove("show");return}d.classList.toggle("show")}
-function filterCat(cat,el){activeCat=cat;document.querySelectorAll(".filter").forEach(f=>f.classList.remove("active"));el.classList.add("active");renderProducts()}
-function checkoutWA(){if(!cart.length)return alert("Cart empty");const text=encodeURIComponent(`Hello VELUXE! 👋\nI want to order:\n${cart.map(i=>`• ${i.name} x${i.qty} - $${i.price*i.qty}`).join("\n")}\n\nTotal: $${cart.reduce((s,i)=>s+i.price*i.qty,0)+15}\nMy name:\nAddress:\nCall me: ${STORE_DISPLAY}`);window.open(`https://wa.me/${STORE_PHONE}?text=${text}`,"_blank")}
-function checkoutCall(){if(!cart.length)return alert("Cart empty");window.location.href=`tel:+${STORE_PHONE}`}
-document.getElementById('waCheckout').onclick=checkoutWA;
-document.getElementById('callCheckout').onclick=checkoutCall;
-renderProducts();renderCart();saveCart();
+
+function saveProduct(){
+const name=document.getElementById('pName').value.trim();
+const cat=document.getElementById('pCat').value;
+const price=parseInt(document.getElementById('pPrice').value);
+const oldP=parseInt(document.getElementById('pOld').value)||price+20;
+const stock=parseInt(document.getElementById('pStock').value)||10;
+const urlImg=document.getElementById('pImg').value.trim();
+const badge=document.getElementById('pBadge').value.trim()||cat.toUpperCase();
+
+if(!name||!price) return alert("Put name and price!");
+if(!uploadedBase64 &&!urlImg) return alert("Abeg upload picture or put image URL!");
+
+const finalImg = uploadedBase64 || urlImg || "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600";
+
+const newP={id:Date.now(),name,cat,price,old:oldP,stock,img:finalImg,badge};
+products.unshift(newP);
+localStorage.setItem("veluxe_custom_products",JSON.stringify(products));
+
+// reset
+document.getElementById('pName').value="";document.getElementById('pPrice').value="";document.getElementById('pOld').value="";document.getElementById('pStock').value="";document.getElementById('pImg').value="";document.getElementById('pBadge').value="";document.getElementById('pFile').value="";uploadedBase64="";document.getElementById('preview').style.display='none';document.getElementById('uploadText').innerHTML='📸 TAP TO CHOOSE PICTURE<br><span style="font-size:10px;color:#888">From gallery or camera</span>';
+
+renderList();
+alert(`Saved! ${name} with picture + ${stock} stock ✅`);
+}
+
+function renderList(){
+document.getElementById('list').innerHTML=products.map((p,i)=>`<div class="p-item"><div class="p-img"><img src="${p.img}"></div><div style="flex:1"><div style="font-size:11px;font-weight:700">${p.name}</div><div style="font-size:10px;color:#888">${p.cat} • $${p.price} • Stock: ${p.stock} • ${p.badge}</div></div><button onclick="deleteProd(${i})" style="background:#000;color:#fff;border:0;padding:6px 12px;border-radius:8px;font-size:10px;cursor:pointer">DEL</button></div>`).join("");
+}
+function deleteProd(i){if(!confirm("Delete this product?"))return;products.splice(i,1);localStorage.setItem("veluxe_custom_products",JSON.stringify(products));renderList()}
+function clearAll(){if(!confirm("Clear all?"))return;localStorage.removeItem("veluxe_custom_products");products=[];renderList();location.reload()}
+renderList();
 </script>
 </body>
 </html>
