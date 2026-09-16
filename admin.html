@@ -1,51 +1,79 @@
 <!DOCTYPE html>
-<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>VELUXE ADMIN</title>
-<style>body{font-family:sans-serif;padding:20px;max-width:600px;margin:0 auto;background:#f9f9f9}h1{font-size:24px}input,select{width:100%;padding:12px;margin:8px 0;border:1px solid #ddd;border-radius:8px}button{padding:12px 20px;border:0;border-radius:8px;font-weight:700;cursor:pointer}.btn-black{background:#000;color:#fff;width:100%}.product{border:1px solid #eee;background:#fff;padding:10px;border-radius:10px;display:flex;gap:10px;margin:8px 0;align-items:center}.product img{width:60px;height:60px;object-fit:cover;border-radius:8px}</style>
-</head><body>
-<h1>VELUXE ADMIN 👑</h1><p style="color:#666;font-size:13px">Add / Remove clothes without coding. Buyer go use this.</p>
-<input id="pName" placeholder="Product Name e.g. Baby Blue Shirt">
-<input id="pPrice" type="number" placeholder="Price e.g. 35">
-<input id="pOld" type="number" placeholder="Old Price e.g. 50">
-<select id="pCat"><option value="tees">TEES</option><option value="cargos">CARGOS</option><option value="hoodies">HOODIES</option><option value="jackets">JACKETS</option><option value="caps">CAPS</option><option value="shoes">SHOES</option><option value="baby">BABY 👶</option></select>
-<input id="pImg" placeholder="Image Link - paste Imgur / Unsplash link OR upload file below">
-<input type="file" id="fileInput" accept="image/*">
-<img id="preview" style="display:none;width:100%;max-height:200px;object-fit:contain;margin:10px 0;border-radius:10px">
-<input id="pBadge" placeholder="Badge e.g. NEW, HOT, BABY NEW">
-<button class="btn-black" onclick="addProduct()">+ ADD PRODUCT</button>
-<hr style="margin:20px 0">
-<h3>Current Products (<span id="count">0</span>)</h3>
-<div id="list"></div>
-<button style="margin-top:20px;background:#fff;border:1px solid #000;width:100%" onclick="downloadBackup()">⬇️ DOWNLOAD BACKUP (Give to new buyer)</button>
-<button style="margin-top:10px;background:#ffe6e6;border:1px solid red;color:red;width:100%" onclick="resetAll()">Reset to Default 59</button>
-<br><br><a href="index.html">← Back to Store</a>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VELUXE ADMIN - Stock Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Space Grotesk',sans-serif;background:#fafafa;padding:20px}
+.box{max-width:600px;margin:0 auto;background:#fff;border:1px solid #eaeaea;border-radius:20px;padding:24px}
+h1{font-size:22px;letter-spacing:3px;margin-bottom:20px;text-align:center}
+input,select{width:100%;padding:14px;border:1px solid #eaeaea;border-radius:12px;margin-bottom:10px;font-size:14px;outline:none}
+label{font-size:10px;font-weight:800;letter-spacing:1px;margin-bottom:4px;display:block;margin-top:8px}
+.btn{width:100%;height:54px;background:#000;color:#fff;border:0;border-radius:14px;font-weight:800;letter-spacing:2px;cursor:pointer;margin-top:10px}
+.btn2{width:100%;height:44px;background:#fff;border:1px solid #000;border-radius:14px;font-weight:700;margin-top:10px;cursor:pointer}
+.prod-list{margin-top:20px;display:flex;flex-direction:column;gap:10px}
+.p-item{display:flex;gap:10px;border:1px solid #eaeaea;padding:10px;border-radius:14px;align-items:center}
+.p-img{width:60px;height:60px;background:#f5f5f5;border-radius:10px;overflow:hidden;flex-shrink:0}.p-img img{width:100%;height:100%;object-fit:cover}
+</style>
+</head>
+<body>
+<div class="box">
+<h1>VELUXE ADMIN - STOCK 🔥</h1>
+<label>Product Name</label>
+<input id="pName" placeholder="e.g Womens Satin Dress Black">
+<label>Category</label>
+<select id="pCat">
+<option value="womens">WOMENS 👩</option>
+<option value="mens">MENS 👨</option>
+<option value="baby">BABY 👶</option>
+<option value="shoes">SHOES</option>
+<option value="tees">TEES</option>
+</select>
+<label>Price ($)</label>
+<input id="pPrice" type="number" placeholder="e.g 78">
+<label>Old Price ($)</label>
+<input id="pOld" type="number" placeholder="e.g 105">
+<label>Stock Amount - IMPORTANT</label>
+<input id="pStock" type="number" placeholder="e.g 10 - how many available">
+<label>Image URL</label>
+<input id="pImg" placeholder="https://... or inspiration.jpg">
+<label>Badge Text</label>
+<input id="pBadge" placeholder="e.g WOMENS NEW or LOW STOCK!">
+<button class="btn" onclick="saveProduct()">SAVE PRODUCT WITH STOCK</button>
+<button class="btn2" onclick="location.href='index.html'">← BACK TO STORE</button>
+<button class="btn2" style="border-color:red;color:red" onclick="clearAll()">CLEAR ALL CUSTOM PRODUCTS</button>
+<div style="margin-top:10px;font-size:10px;color:#888;text-align:center">After save, go to store and run: javascript:localStorage.removeItem('veluxe_custom_products') if you want to see default products again. But for your custom, it will show instantly.</div>
+<div id="list" class="prod-list"></div>
+</div>
 <script>
-const defaultProducts=[
-{id:51,name:"VELUXE Inspiration Stripe Shirt - REAL",price:68,old:90,cat:"tees",img:"inspiration.jpg",badge:"REAL DRIP 🔥"},
-{id:52,name:"Baby Onesie - Cream Bear",price:25,old:35,cat:"baby",img:"https://images.unsplash.com/photo-1522771930-78848d9293e8?w=600",badge:"BABY NEW 👶"},
-{id:53,name:"Baby Set - Blue Stripes",price:32,old:45,cat:"baby",img:"https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=600",badge:"CUTE"},
-{id:54,name:"Baby Hoodie - Grey",price:28,old:38,cat:"baby",img:"https://images.unsplash.com/photo-1560506840-ec148e82a604?w=600",badge:"COZY"},
-{id:55,name:"Baby Shoes - White Soft",price:22,old:30,cat:"baby",img:"https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600",badge:"FIRST WALK"},
-{id:56,name:"Baby Tee - Mini VELUXE",price:18,old:26,cat:"baby",img:"https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600",badge:"MINI ME"},
-{id:57,name:"Baby Romper - Denim",price:30,old:42,cat:"baby",img:"https://images.unsplash.com/photo-1522771930-78848d9293e8?w=600",badge:"TRENDING"},
-{id:58,name:"Baby Beanie + Socks Set",price:20,old:28,cat:"baby",img:"https://images.unsplash.com/photo-1576871337622-98d48d1cf531?w=600",badge:"GIFT SET"},
-{id:59,name:"Baby Jacket - Puffer Cream",price:45,old:60,cat:"baby",img:"https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600",badge:"WINTER BABY"},
-{id:1,name:"Essential Tee - Black",price:45,old:60,cat:"tees",img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600",badge:"NEW"},
-{id:2,name:"Cargo Pant - Khaki",price:85,old:110,cat:"cargos",img:"https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600",badge:"BESTSELLER"},
-{id:41,name:"Runner - Triple Black",price:125,old:160,cat:"shoes",img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600",badge:"NEW"}
+let products=JSON.parse(localStorage.getItem("veluxe_custom_products")||"null")||[
+{id:100,name:"Womens Satin Dress Black",price:78,old:105,cat:"womens",stock:7,img:"https://images.unsplash.com/photo-1515372039744-b8f02a3c67ae?w=600",badge:"WOMENS 👩"},
+{id:60,name:"Mens VELUXE Stripe Shirt REAL",price:68,old:90,cat:"mens",stock:15,img:"inspiration.jpg",badge:"MENS REAL 🔥"},
+{id:52,name:"Baby Onesie Cream Bear",price:25,old:35,cat:"baby",stock:30,img:"https://images.unsplash.com/photo-1522771930-78848d9293e8?w=600",badge:"BABY 👶"}
 ];
-let products=JSON.parse(localStorage.getItem("veluxe_custom_products")||"null")||defaultProducts;
-let tempImg="";
-document.getElementById("fileInput").addEventListener("change",e=>{
- const file=e.target.files[0]; if(!file)return;
- const reader=new FileReader();
- reader.onload=ev=>{tempImg=ev.target.result; document.getElementById("pImg").value=""; const pv=document.getElementById("preview"); pv.src=tempImg; pv.style.display="block";}
- reader.readAsDataURL(file);
-});
-function render(){document.getElementById("count").textContent=products.length; document.getElementById("list").innerHTML=products.map((p,i)=>`<div class="product"><img src="${p.img}"><div style="flex:1"><b>${p.name}</b><br><small>$${p.price} - ${p.cat}</small></div><button onclick="removeP(${i})" style="background:red;color:#fff">X</button></div>`).join("")}
-function addProduct(){const name=document.getElementById("pName").value; const price=+document.getElementById("pPrice").value; const oldP=+document.getElementById("pOld").value||price+15; const cat=document.getElementById("pCat").value; let img=document.getElementById("pImg").value||tempImg; const badge=document.getElementById("pBadge").value; if(!name||!price||!img)return alert("Fill Name, Price, and Image"); products.unshift({id:Date.now(),name,price,old:oldP,cat,img,badge}); save(); render(); document.getElementById("pName").value="";document.getElementById("pPrice").value="";document.getElementById("pOld").value="";document.getElementById("pImg").value="";document.getElementById("pBadge").value="";tempImg="";document.getElementById("preview").style.display="none"; alert("Added! Go to homepage to see am.")}
-function removeP(i){if(!confirm("Delete this product?"))return; products.splice(i,1); save(); render()}
-function save(){localStorage.setItem("veluxe_custom_products",JSON.stringify(products))}
-function resetAll(){if(!confirm("Reset to default 59 products?"))return; localStorage.removeItem("veluxe_custom_products"); products=[...defaultProducts]; render()}
-function downloadBackup(){const blob=new Blob([JSON.stringify(products,null,2)],{type:"application/json"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="veluxe-products-backup.json";a.click()}
-render();
-</script></body></html>
+function saveProduct(){
+const name=document.getElementById('pName').value.trim();
+const cat=document.getElementById('pCat').value;
+const price=parseInt(document.getElementById('pPrice').value);
+const oldP=parseInt(document.getElementById('pOld').value)||price+20;
+const stock=parseInt(document.getElementById('pStock').value)||10;
+const img=document.getElementById('pImg').value.trim()||"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600";
+const badge=document.getElementById('pBadge').value.trim()||cat.toUpperCase();
+if(!name||!price)return alert("Put name and price!");
+const newP={id:Date.now(),name,cat,price,old:oldP,stock,img,badge};
+products.unshift(newP);
+localStorage.setItem("veluxe_custom_products",JSON.stringify(products));
+document.getElementById('pName').value="";document.getElementById('pPrice').value="";document.getElementById('pOld').value="";document.getElementById('pStock').value="";document.getElementById('pImg').value="";document.getElementById('pBadge').value="";
+renderList();
+alert(`Saved! ${name} with ${stock} in stock ✅`);
+}
+function renderList(){
+document.getElementById('list').innerHTML=products.map((p,i)=>`<div class="p-item"><div class="p-img"><img src="${p.img}"></div><div style="flex:1"><div style="font-size:11px;font-weight:700">${p.name}</div><div style="font-size:10px;color:#888">${p.cat} • $${p.price} • Stock: ${p.stock||0} • ${p.badge}</div></div><button onclick="deleteProd(${i})" style="background:#000;color:#fff;border:0;padding:6px 12px;border-radius:8px;font-size:10px;cursor:pointer">DELETE</button></div>`).join("");
+}
+function deleteProd(i){if(!confirm("Delete?"))return;products.splice(i,1);localStorage.setItem("veluxe_custom_products",JSON.stringify(products));renderList()}
+function clearAll(){if(!confirm("Clear all custom and return to default?"))return;localStorage.removeItem("veluxe_custom_products");location.reload()}
+renderList();
+</script>
+</body>
+</html>
