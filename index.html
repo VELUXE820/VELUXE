@@ -2,34 +2,35 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VELUXE - Luxury Family Collection</title>
+<title>VELUXE FAMILY - Trusted Store</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Space Grotesk',sans-serif;background:#fff;color:#0a0a0a}
-header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #eaeaea;display:flex;align-items:center;justify-content:space-between;padding:16px 20px}
-.logo{font-size:26px;font-weight:700;letter-spacing:5px}
-.h-right{display:flex;gap:10px;align-items:center}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Space Grotesk',sans-serif;background:#fff;color:#0a0a0a}
+header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #eaeaea;display:flex;justify-content:space-between;padding:16px 20px;align-items:center}
+.logo{font-size:26px;font-weight:700;letter-spacing:5px}.h-right{display:flex;gap:10px;align-items:center}
 .icon-btn{width:42px;height:42px;border:1px solid #eaeaea;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;position:relative;cursor:pointer}
-.admin-btn{height:42px;padding:0 18px;border:1px solid #000;border-radius:20px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;letter-spacing:1.5px;cursor:pointer}
+.admin-btn{height:42px;padding:0 18px;border-radius:20px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;letter-spacing:1px;cursor:pointer}
 .cart-count{position:absolute;top:-5px;right:-5px;background:#000;color:#fff;font-size:10px;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700}
-.hero{padding:28px 20px 10px}.hero h1{font-size:44px;line-height:.9;letter-spacing:-1px}.hero h1 em{font-weight:400;letter-spacing:3px;font-style:normal}.hero p{color:#888;font-size:12px;letter-spacing:1px;text-transform:uppercase;margin-top:10px}
-.search-box{margin:16px 20px 0;position:relative}.search-box input{width:100%;height:50px;padding:0 20px 0 45px;border:1px solid #eaeaea;border-radius:30px;font-size:14px;outline:none;background:#fafafa}.search-box span{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:18px}
-.filters{display:flex;gap:8px;overflow-x:auto;padding:14px 20px;position:sticky;top:65px;background:#fff;z-index:10}.filters::-webkit-scrollbar{display:none}.filter{white-space:nowrap;padding:11px 18px;border:1px solid #eaeaea;border-radius:30px;background:#fff;font-size:10px;font-weight:700;letter-spacing:1px;cursor:pointer;text-transform:uppercase}.filter.active{background:#000;color:#fff;border-color:#000}
-.products{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
-.card{border:1px solid #eaeaea;border-radius:20px;overflow:hidden;background:#fff}.card-img{aspect-ratio:1/1.15;background:#f5f5f5;position:relative}.card-img img{width:100%;height:100%;object-fit:cover;display:block}.badge{position:absolute;top:10px;left:10px;background:#fff;padding:5px 10px;border-radius:20px;font-size:8px;font-weight:700;letter-spacing:1px}
-.card-info{padding:12px}.card-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;line-height:1.3;min-height:28px}.card-price{margin-top:6px;display:flex;gap:6px;align-items:center}.price{font-weight:800;font-size:13px}.old{text-decoration:line-through;color:#888;font-size:10px}.stars{margin-top:5px;font-size:9px}.stars span{color:#888;font-size:8px}.add{margin-top:10px;width:100%;height:40px;border:0;background:#000;color:#fff;border-radius:12px;font-weight:700;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer}
-.reviews-section{padding:30px 20px;background:#fafafa;margin-top:20px;border-top:1px solid #eaeaea}.reviews-section h2{font-size:16px;letter-spacing:2px;margin-bottom:16px}.review-card{background:#fff;border:1px solid #eaeaea;border-radius:16px;padding:14px;margin-bottom:10px;display:flex;gap:12px}.review-avatar{width:38px;height:38px;border-radius:50%;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0}
-.size-modal{position:fixed;inset:0;z-index:200;display:none}.size-modal.show{display:flex;align-items:center;justify-content:center}.size-bg{position:absolute;inset:0;background:rgba(0,0,0,.6)}.size-box{position:relative;background:#fff;border-radius:20px;padding:24px;width:90%;max-width:360px}.size-title{font-weight:800;letter-spacing:2px;margin-bottom:14px;font-size:13px}.sizes{display:flex;gap:8px;margin-bottom:18px}.size-opt{flex:1;height:44px;border:1px solid #eaeaea;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;cursor:pointer}.size-opt.active{background:#000;color:#fff;border-color:#000}
-.cart-drawer{position:fixed;inset:0;z-index:100;display:none}.cart-drawer.show{display:block}.cart-bg{position:absolute;inset:0;background:rgba(0,0,0,.45)}.cart-box{position:absolute;right:0;top:0;bottom:0;width:100%;max-width:400px;background:#fff;display:flex;flex-direction:column}.cart-head{padding:22px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eaeaea;font-weight:800;letter-spacing:2px}.cart-items{flex:1;overflow:auto;padding:14px;display:flex;flex-direction:column;gap:12px}.c-item{display:flex;gap:12px;border:1px solid #eaeaea;padding:10px;border-radius:16px}.c-img{width:75px;height:85px;background:#f5f5f5;border-radius:12px;overflow:hidden;flex-shrink:0}.c-img img{width:100%;height:100%;object-fit:cover}.cart-foot{padding:20px;border-top:1px solid #eaeaea;background:#fafafa}.row{display:flex;justify-content:space-between;margin-bottom:8px;font-size:12px;text-transform:uppercase}.row.total{font-weight:800;font-size:18px;margin-top:12px}.checkout{width:100%;height:54px;background:#000;color:#fff;border:0;border-radius:14px;font-weight:800;font-size:12px;letter-spacing:2px;text-transform:uppercase;margin-top:14px;cursor:pointer}
-.wa-float{position:fixed;bottom:20px;right:20px;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 8px 24px rgba(0,0,0,.2);z-index:90;cursor:pointer}
-@media(min-width:768px){.products{grid-template-columns:repeat(4,1fr)}.hero h1{font-size:68px}}
+.hero{padding:28px 20px 10px}.hero h1{font-size:44px;line-height:.9}.hero p{color:#888;font-size:12px;margin-top:10px}
+.trust-bar{display:flex;gap:8px;padding:12px 20px;background:#f8f8f8;border-bottom:1px solid #eaeaea;overflow-x:auto}.trust-bar::-webkit-scrollbar{display:none}.trust-item{white-space:nowrap;background:#fff;border:1px solid #eaeaea;border-radius:20px;padding:6px 12px;font-size:9px;font-weight:700}
+.search-box{margin:16px 20px 0;position:relative}.search-box input{width:100%;height:50px;padding:0 20px 0 45px;border:1px solid #eaeaea;border-radius:30px;background:#fafafa;outline:none}.search-box span{position:absolute;left:16px;top:50%;transform:translateY(-50%)}
+.filters{display:flex;gap:8px;overflow-x:auto;padding:14px 20px;position:sticky;top:65px;background:#fff;z-index:10}.filters::-webkit-scrollbar{display:none}.filter{white-space:nowrap;padding:11px 18px;border:1px solid #eaeaea;border-radius:30px;background:#fff;font-size:10px;font-weight:700;cursor:pointer}.filter.active{background:#000;color:#fff}
+.products{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}.card{border:1px solid #eaeaea;border-radius:20px;overflow:hidden}.card-img{aspect-ratio:1/1.15;background:#f5f5f5;position:relative}.card-img img{width:100%;height:100%;object-fit:cover}.badge{position:absolute;top:10px;left:10px;background:#fff;padding:5px 10px;border-radius:20px;font-size:8px;font-weight:700}
+.card-info{padding:12px}.card-title{font-size:10px;font-weight:700;text-transform:uppercase;min-height:28px}.stock{font-size:9px;margin-top:5px;font-weight:800}.stock.low{color:#ff3b30}.stock.ok{color:#00b050}.add{margin-top:8px;width:100%;height:40px;border:0;background:#000;color:#fff;border-radius:12px;font-weight:700;font-size:10px;cursor:pointer}.add:disabled{background:#e5e5e5}
+.size-modal{position:fixed;inset:0;z-index:200;display:none}.size-modal.show{display:flex;align-items:center;justify-content:center}.size-bg{position:absolute;inset:0;background:rgba(0,0,0,.6)}.size-box{position:relative;background:#fff;border-radius:20px;padding:24px;width:90%;max-width:360px}.sizes{display:flex;gap:8px;margin-bottom:18px}.size-opt{flex:1;height:44px;border:1px solid #eaeaea;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:700;cursor:pointer}.size-opt.active{background:#000;color:#fff}
+.cart-drawer{position:fixed;inset:0;z-index:100;display:none}.cart-drawer.show{display:block}.cart-bg{position:absolute;inset:0;background:rgba(0,0,0,.45)}.cart-box{position:absolute;right:0;top:0;bottom:0;width:100%;max-width:400px;background:#fff;display:flex;flex-direction:column}.cart-head{padding:22px;display:flex;justify-content:space-between;border-bottom:1px solid #eaeaea;font-weight:800}.cart-items{flex:1;overflow:auto;padding:14px;display:flex;flex-direction:column;gap:12px}.c-item{display:flex;gap:12px;border:1px solid #eaeaea;padding:10px;border-radius:16px}.c-img{width:75px;height:85px;background:#f5f5f5;border-radius:12px;overflow:hidden}.cart-foot{padding:20px;border-top:1px solid #eaeaea;background:#fafafa}.row{display:flex;justify-content:space-between;margin-bottom:8px;font-size:12px}.row.total{font-weight:800;font-size:18px;margin-top:10px}
+.checkout{width:100%;height:54px;background:#000;color:#fff;border:0;border-radius:14px;font-weight:800;font-size:12px;letter-spacing:1px;margin-top:10px;cursor:pointer}.checkout.call{background:#fff;color:#000;border:1px solid #000}.checkout.wa{background:#25D366}
+.contact-box{padding:30px 20px;background:#0a0a0a;color:#fff;margin-top:20px}.contact-box h3{font-size:14px;letter-spacing:2px;margin-bottom:14px}.contact-item{display:flex;gap:10px;margin-bottom:12px;font-size:12px;align-items:center}.contact-item a{color:#fff;text-decoration:none}
+.wa-float{position:fixed;bottom:90px;right:20px;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 8px 24px rgba(0,0,0,.2);z-index:90;cursor:pointer}
+.call-float{position:fixed;bottom:20px;right:20px;width:56px;height:56px;background:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 8px 24px rgba(0,0,0,.2);z-index:90;cursor:pointer;color:#fff;border:1px solid #fff}
+@media(min-width:768px){.products{grid-template-columns:repeat(4,1fr)}}
 </style>
 </head>
 <body>
-<header><div class="logo">VELUXE</div><div class="h-right"><div class="admin-btn" onclick="location.href='admin.html'">ADMIN</div><div class="icon-btn" onclick="toggleCart()">🛒<div id="cartCount" class="cart-count">0</div></div></div></header>
-<div class="hero"><h1>VELUXE<br><em>FAMILY</em></h1><p id="countText">Loading...</p></div>
-<div class="search-box"><span>🔍</span><input id="searchInput" type="text" placeholder="Search mens, womens, baby, shoes..." oninput="handleSearch(this.value)"></div>
+<header><div class="logo">VELUXE</div><div class="h-right"><div class="admin-btn" id="adminBtn">ADMIN</div><div class="icon-btn" onclick="toggleCart()">🛒<div id="cartCount" class="cart-count">0</div></div></div></header>
+<div class="hero"><h1>VELUXE<br><em style="font-weight:400;letter-spacing:3px;font-style:normal">FAMILY</em></h1><p id="countText"></p></div>
+<div class="trust-bar" id="trustBar"></div>
+<div class="search-box"><span>🔍</span><input id="searchInput" type="text" placeholder="Search mens, womens, baby..." oninput="handleSearch(this.value)"></div>
 <div class="filters">
 <div class="filter active" onclick="filterCat('all',this)">ALL</div>
 <div class="filter" onclick="filterCat('mens',this)">MENS 👨</div>
@@ -39,56 +40,94 @@ header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid 
 <div class="filter" onclick="filterCat('tees',this)">TEES</div>
 </div>
 <div id="products" class="products"></div>
-
-<div class="reviews-section"><h2>FAMILY REVIEWS ⭐ 4.9/5 (127 reviews)</h2>
-<div class="review-card"><div class="review-avatar">A</div><div><div style="font-weight:700;font-size:11px">Amaka - Lagos ⭐⭐⭐⭐⭐</div><div style="font-size:11px;color:#555;margin-top:4px">"Womens dress + Mens cargo same day delivery to Ibadan! Quality mad!"</div></div></div>
-<div class="review-card"><div class="review-avatar">B</div><div><div style="font-weight:700;font-size:11px">Blessing - Abuja ⭐⭐⭐⭐⭐</div><div style="font-size:11px;color:#555;margin-top:4px">"Baby + mummy matching set! My son loves the Cream Bear onesie 👶"</div></div></div>
-<div class="review-card"><div class="review-avatar">T</div><div><div style="font-weight:700;font-size:11px">Tunde - PH ⭐⭐⭐⭐⭐</div><div style="font-size:11px;color:#555;margin-top:4px">"Mens Triple Black + Womens White Sneaker = couple goals drip 🔥 Legit plug!"</div></div></div>
-</div>
-
-<div id="sizeModal" class="size-modal"><div class="size-bg" onclick="closeSize()"></div><div class="size-box"><div class="size-title">SELECT SIZE</div><div class="sizes"><div class="size-opt" onclick="selectSize('S',this)">S</div><div class="size-opt" onclick="selectSize('M',this)">M</div><div class="size-opt active" onclick="selectSize('L',this)">L</div><div class="size-opt" onclick="selectSize('XL',this)">XL</div></div><button class="add" onclick="confirmAdd()">CONFIRM - ADD TO CART</button><div style="text-align:center;margin-top:10px;font-size:11px;color:#888;cursor:pointer" onclick="closeSize()">Cancel</div></div></div>
-
-<div style="padding:20px;text-align:center;color:#999;font-size:9px;letter-spacing:1px;padding-bottom:100px">VELUXE FAMILY © 2026 • Free Shipping Worldwide</div>
-
-<div class="wa-float" onclick="window.open('https://wa.me/2347067087764','_blank')">💬</div>
-
-<div id="cartDrawer" class="cart-drawer" onclick="if(!event.target.closest('.cart-box'))toggleCart()"><div class="cart-bg"></div><div class="cart-box"><div class="cart-head"><span>CART</span><span onclick="toggleCart()" style="cursor:pointer;font-size:20px">✕</span></div><div id="cartItems" class="cart-items"></div><div class="cart-foot"><div class="row"><span>Subtotal</span><span id="subtotal">$0</span></div><div class="row"><span>Shipping</span><span>$15</span></div><div class="row total"><span>Total</span><span id="total">$15</span></div><button class="checkout" onclick="checkout()">Order via WhatsApp</button></div></div></div>
+<div class="contact-box" id="contactBox"></div>
+<div id="sizeModal" class="size-modal"><div class="size-bg" onclick="closeSize()"></div><div class="size-box"><div style="font-weight:800;margin-bottom:14px;font-size:12px;letter-spacing:1px">SELECT SIZE</div><div class="sizes"><div class="size-opt" onclick="selectSize('S',this)">S</div><div class="size-opt" onclick="selectSize('M',this)">M</div><div class="size-opt active" onclick="selectSize('L',this)">L</div><div class="size-opt" onclick="selectSize('XL',this)">XL</div></div><button class="add" onclick="confirmAdd()">CONFIRM</button></div></div>
+<div class="wa-float" id="waFloat">💬</div>
+<div class="call-float" id="callFloat">📞</div>
+<div id="cartDrawer" class="cart-drawer"><div class="cart-bg" onclick="toggleCart()"></div><div class="cart-box"><div class="cart-head"><span>CART</span><span onclick="toggleCart()" style="cursor:pointer;font-size:22px">✕</span></div><div id="cartItems" class="cart-items"></div><div class="cart-foot"><div class="row"><span>Subtotal</span><span id="subtotal">$0</span></div><div class="row total"><span>Total + Shipping</span><span id="total">$0</span></div><button class="checkout wa" id="waCheckout">💬 ORDER VIA WHATSAPP</button><button class="checkout call" id="callCheckout">📞 CALL TO ORDER</button><div style="font-size:9px;color:#888;text-align:center;margin-top:10px" id="trustNote"></div></div></div></div>
 
 <script>
+// ========= CHANGE NUMBER ONLY HERE - WHEN BUYER BUY =========
+const STORE_PHONE = "2347067087764"; // Country code + number - NO + sign - For WhatsApp link & call
+const STORE_DISPLAY = "0706 708 7764"; // How people see am
+const STORE_EMAIL = "veluxe820@gmail.com";
+const STORE_LOCATION = "Ibadan, Oyo State - We dey deliver everywhere for Nigeria";
+// ============================================================
+
+// ADMIN BUTTON FIX - Works for GitHub Pages
+document.getElementById('adminBtn').addEventListener('click', function(){
+  const base = window.location.href.substring(0, window.location.href.lastIndexOf('/')+1);
+  window.location.href = base + 'admin.html';
+});
+
+// Update all phone places automatically
+document.getElementById('trustBar').innerHTML = `
+<div class="trust-item">✅ VERIFIED SELLER</div>
+<div class="trust-item">📞 CALL TO ORDER: ${STORE_DISPLAY}</div>
+<div class="trust-item">🚚 DELIVERY IN IBADAN SAME DAY</div>
+<div class="trust-item">💬 WHATSAPP 24/7</div>
+<div class="trust-item">⭐ 4.9/5 (127 REVIEWS)</div>
+`;
+document.getElementById('contactBox').innerHTML = `
+<h3>CONTACT US - WE NO BE SCAM! 😊</h3>
+<div class="contact-item">📞 <a href="tel:+${STORE_PHONE}">Call Us: ${STORE_DISPLAY} (Tap to Call)</a></div>
+<div class="contact-item">💬 <a href="https://wa.me/${STORE_PHONE}" target="_blank">WhatsApp: ${STORE_DISPLAY} (Tap to Chat)</a></div>
+<div class="contact-item">📍 ${STORE_LOCATION}</div>
+<div class="contact-item">✉️ ${STORE_EMAIL}</div>
+<div class="contact-item">⏰ Open: 8AM - 10PM Everyday</div>
+<div style="margin-top:16px;padding:12px;background:#1a1a1a;border-radius:12px;font-size:10px;line-height:1.5">
+<b style="letter-spacing:1px">WHY TRUST US?</b><br>
+✅ You fit call us make we video call show you product<br>
+✅ Pay on delivery for Ibadan<br>
+✅ Free return if no be wetin you order<br>
+✅ 127+ happy customers for Lagos, Abuja, PH
+</div>
+`;
+document.getElementById('waFloat').onclick = () => window.open(`https://wa.me/${STORE_PHONE}`,'_blank');
+document.getElementById('callFloat').onclick = () => window.location.href = `tel:+${STORE_PHONE}`;
+document.getElementById('callCheckout').textContent = `📞 CALL TO ORDER - ${STORE_DISPLAY}`;
+document.getElementById('trustNote').textContent = `Tap WhatsApp to chat or Call ${STORE_DISPLAY} to speak directly - No scam!`;
+
 const defaultProducts=[
-{id:100,name:"Womens - Satin Slip Dress - Black",price:78,old:105,cat:"womens",img:"https://images.unsplash.com/photo-1515372039744-b8f02a3c67ae?w=600",badge:"WOMENS NEW 👩"},
-{id:101,name:"Womens - Crop Top + Cargo Set - Beige",price:85,old:115,cat:"womens",img:"https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=600",badge:"TRENDING"},
-{id:102,name:"Womens - Oversized Tee - White",price:42,old:58,cat:"womens",img:"https://images.unsplash.com/photo-1554568218-0f1715e72254?w=600",badge:"WOMENS"},
-{id:103,name:"Womens - Leather Jacket - Brown",price:125,old:170,cat:"womens",img:"https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600",badge:"LUXE"},
-{id:104,name:"Womens - Sneakers - White Chunky",price:95,old:130,cat:"womens",img:"https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=600",badge:"WOMENS SHOES"},
-{id:105,name:"Womens - Mini Skirt - Denim",price:55,old:75,cat:"womens",img:"https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=600",badge:"NEW"},
-{id:60,name:"Mens - VELUXE Stripe Shirt - REAL",price:68,old:90,cat:"mens",img:"inspiration.jpg",badge:"MENS REAL 🔥"},
-{id:61,name:"Mens - Essential Tee - Black",price:45,old:60,cat:"mens",img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600",badge:"MENS"},
-{id:62,name:"Mens - Cargo Pant - Khaki",price:85,old:110,cat:"mens",img:"https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600",badge:"BESTSELLER"},
-{id:63,name:"Mens - Hoodie - Onyx Black",price:95,old:120,cat:"mens",img:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600",badge:"MENS LUXE"},
-{id:64,name:"Mens - Runner - Triple Black",price:125,old:160,cat:"shoes",img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600",badge:"MENS SHOES"},
-{id:52,name:"Baby Onesie - Cream Bear",price:25,old:35,cat:"baby",img:"https://images.unsplash.com/photo-1522771930-78848d9293e8?w=600",badge:"BABY 👶"},
-{id:53,name:"Baby Set - Blue Stripes",price:32,old:45,cat:"baby",img:"https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=600",badge:"CUTE"},
-{id:55,name:"Baby Shoes - White Soft",price:22,old:30,cat:"baby",img:"https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600",badge:"FIRST WALK"},
-{id:1,name:"Unisex - Classic Tee",price:40,old:55,cat:"tees",img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600",badge:"UNISEX"},
-{id:3,name:"Unisex - Hoodie Onyx",price:95,old:120,cat:"tees",img:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600",badge:"UNISEX"}
+{id:100,name:"Womens Satin Dress Black",price:78,old:105,cat:"womens",stock:7,img:"https://images.unsplash.com/photo-1515372039744-b8f02a3c67ae?w=600",badge:"WOMENS 👩"},
+{id:101,name:"Womens Crop Top + Cargo Set Beige",price:85,old:115,cat:"womens",stock:12,img:"https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=600",badge:"WOMENS NEW"},
+{id:60,name:"Mens VELUXE Stripe Shirt REAL",price:68,old:90,cat:"mens",stock:15,img:"inspiration.jpg",badge:"MENS REAL 🔥"},
+{id:61,name:"Mens Essential Tee Black",price:45,old:60,cat:"mens",stock:25,img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600",badge:"MENS"},
+{id:52,name:"Baby Onesie Cream Bear",price:25,old:35,cat:"baby",stock:30,img:"https://images.unsplash.com/photo-1522771930-78848d9293e8?w=600",badge:"BABY 👶"},
+{id:53,name:"Baby Set Blue Stripes",price:32,old:45,cat:"baby",stock:18,img:"https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=600",badge:"BABY"}
 ];
 let productsData=JSON.parse(localStorage.getItem("veluxe_custom_products")||"null")||defaultProducts;
 let cart=JSON.parse(localStorage.getItem("veluxe59")||"[]");
-let activeCat="all"; let searchQ=""; let pendingProduct=null; let selectedSize="L";
-function handleSearch(q){searchQ=q.toLowerCase(); renderProducts()}
-function renderProducts(){document.getElementById("countText").textContent=productsData.length+" PIECES - FAMILY STORE"; let filtered=activeCat=="all"?productsData:productsData.filter(p=>p.cat==activeCat || (activeCat=="shoes" && p.cat=="shoes")); if(searchQ){filtered=filtered.filter(p=>p.name.toLowerCase().includes(searchQ)||p.cat.includes(searchQ))} const c=document.getElementById("products"); if(!filtered.length){c.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:40px;color:#999">No results for "${searchQ}" 😕</div>`;return} c.innerHTML=filtered.map(p=>`<div class="card"><div class="card-img"><img src="${p.img}" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600'">${p.badge?`<div class="badge">${p.badge}</div>`:``}</div><div class="card-info"><div class="card-title">${p.name}</div><div class="stars">⭐⭐⭐⭐⭐ <span>(4.9)</span></div><div class="card-price"><span class="price">$${p.price}</span><span class="old">$${p.old}</span></div><button class="add" onclick="openSize(${p.id})">Add to Cart</button></div></div>`).join("")}
-function openSize(id){pendingProduct=productsData.find(x=>x.id==id);selectedSize="L";document.querySelectorAll(".size-opt").forEach(o=>o.classList.remove("active"));document.querySelectorAll(".size-opt")[2].classList.add("active");document.getElementById("sizeModal").classList.add("show")}
-function closeSize(){document.getElementById("sizeModal").classList.remove("show");pendingProduct=null}
-function selectSize(s,el){selectedSize=s;document.querySelectorAll(".size-opt").forEach(o=>o.classList.remove("active"));el.classList.add("active")}
-function confirmAdd(){if(!pendingProduct)return;const p=pendingProduct;const idWithSize=p.id+"-"+selectedSize;const ex=cart.find(x=>x.id==idWithSize);if(ex)ex.qty++;else cart.push({...p,id:idWithSize,originalId:p.id,size:selectedSize,qty:1,name:p.name+" ("+selectedSize+")"});saveCart();renderCart();closeSize();toggleCart(true)}
+let activeCat="all"; let searchQ=""; let pending=null; let selSize="L";
+function handleSearch(q){searchQ=q.toLowerCase();renderProducts()}
+function renderProducts(){
+document.getElementById("countText").textContent=productsData.length+" PIECES - CALL "+STORE_DISPLAY;
+let f=activeCat=="all"?productsData:productsData.filter(p=>p.cat==activeCat);
+if(searchQ)f=f.filter(p=>p.name.toLowerCase().includes(searchQ));
+document.getElementById("products").innerHTML=f.map(p=>{
+const s=p.stock??0;
+const cls=s<=5?"low":"ok";
+const txt=s<=0?"OUT OF STOCK":s<=5?`Only ${s} left! 🔥`:`${s} in stock ✅`;
+return `<div class="card"><div class="card-img"><img src="${p.img}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600'"><div class="badge">${p.badge}</div></div><div class="card-info"><div class="card-title">${p.name}</div><div class="stock ${cls}">${txt}</div><div style="font-size:13px;font-weight:800;margin-top:4px">$${p.price} <span style="text-decoration:line-through;color:#888;font-size:10px">$${p.old}</span></div><button class="add" ${s<=0?"disabled":""} onclick="openSize(${p.id})">${s<=0?"Sold Out":"Add to Cart"}</button></div></div>`
+}).join("")}
+function openSize(id){const prod=productsData.find(x=>x.id==id);if((prod.stock||0)<=0)return alert("Out of stock! Call "+STORE_DISPLAY);pending=prod;document.getElementById("sizeModal").classList.add("show")}
+function closeSize(){document.getElementById("sizeModal").classList.remove("show")}
+function selectSize(s,el){selSize=s;document.querySelectorAll(".size-opt").forEach(o=>o.classList.remove("active"));el.classList.add("active")}
+function confirmAdd(){const p=pending;if(!p)return;const nid=p.id+"-"+selSize;const ex=cart.find(x=>x.id==nid);if(ex){if(ex.qty>=p.stock)return alert("Only "+p.stock+" left!");ex.qty++;}else cart.push({...p,id:nid,name:p.name+" ("+selSize+")",qty:1});saveCart();renderCart();closeSize();toggleCart(true)}
 function saveCart(){localStorage.setItem("veluxe59",JSON.stringify(cart));document.getElementById("cartCount").textContent=cart.reduce((s,i)=>s+i.qty,0)}
-function renderCart(){const c=document.getElementById("cartItems");if(!cart.length){c.innerHTML=`<div style="padding:50px;text-align:center;color:#999">CART EMPTY</div>`;updateTotal();return}c.innerHTML=cart.map((it,idx)=>`<div class="c-item"><div class="c-img"><img src="${it.img}" onerror="this.src='https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600'"></div><div style="flex:1"><div style="font-size:11px;font-weight:700;text-transform:uppercase">${it.name}</div><div style="display:flex;justify-content:space-between;margin-top:12px"><div style="display:flex;gap:8px;align-items:center;border:1px solid #eaeaea;border-radius:20px;padding:3px 8px"><button onclick="changeQty(${idx},-1)" style="width:22px;height:22px;border:0;background:#000;color:#fff;border-radius:50%;cursor:pointer">-</button><span style="font-size:12px">${it.qty}</span><button onclick="changeQty(${idx},1)" style="width:22px;height:22px;border:0;background:#000;color:#fff;border-radius:50%;cursor:pointer">+</button></div><span style="font-weight:800">$${it.price*it.qty}</span></div></div></div>`).join("");updateTotal()}
-function changeQty(idx,d){cart[idx].qty+=d;if(cart[idx].qty<=0)cart.splice(idx,1);saveCart();renderCart()}
+function renderCart(){
+const c=document.getElementById("cartItems");
+if(!cart.length){c.innerHTML=`<div style="padding:40px;text-align:center;color:#999">CART EMPTY<br><br><a href="tel:+${STORE_PHONE}" style="background:#000;color:#fff;padding:10px 20px;border-radius:20px;text-decoration:none">📞 Call ${STORE_DISPLAY}</a></div>`;updateTotal();return}
+c.innerHTML=cart.map((it,idx)=>`<div class="c-item"><div class="c-img"><img src="${it.img}"></div><div style="flex:1"><div style="font-size:11px;font-weight:700">${it.name}</div><div style="display:flex;justify-content:space-between;margin-top:10px"><span style="font-weight:800">$${it.price*it.qty}</span><button onclick="cart.splice(${idx},1);saveCart();renderCart()" style="border:0;background:#000;color:#fff;padding:4px 10px;border-radius:10px">X</button></div></div></div>`).join("");
+updateTotal()
+}
 function updateTotal(){const sub=cart.reduce((s,i)=>s+i.price*i.qty,0);document.getElementById("subtotal").textContent="$"+sub;document.getElementById("total").textContent="$"+(sub+15)}
 function toggleCart(f){const d=document.getElementById("cartDrawer");if(f===true){d.classList.add("show");return}if(f===false){d.classList.remove("show");return}d.classList.toggle("show")}
 function filterCat(cat,el){activeCat=cat;document.querySelectorAll(".filter").forEach(f=>f.classList.remove("active"));el.classList.add("active");renderProducts()}
-function checkout(){if(!cart.length)return alert("Cart empty");const text=encodeURIComponent(`Hello VELUXE Family! 👋\nI want to order:\n\n${cart.map(i=>`• ${i.name} x${i.qty} - $${i.price*i.qty}`).join("\n")}\n\nSubtotal: $${cart.reduce((s,i)=>s+i.price*i.qty,0)}\nShipping: $15\nTotal: $${cart.reduce((s,i)=>s+i.price*i.qty,0)+15}`);window.open(`https://wa.me/2347067087764?text=${text}`,"_blank")}
+function checkoutWA(){if(!cart.length)return alert("Cart empty");const text=encodeURIComponent(`Hello VELUXE! 👋\nI want to order:\n${cart.map(i=>`• ${i.name} x${i.qty} - $${i.price*i.qty}`).join("\n")}\n\nTotal: $${cart.reduce((s,i)=>s+i.price*i.qty,0)+15}\nMy name:\nAddress:\nCall me: ${STORE_DISPLAY}`);window.open(`https://wa.me/${STORE_PHONE}?text=${text}`,"_blank")}
+function checkoutCall(){if(!cart.length)return alert("Cart empty");window.location.href=`tel:+${STORE_PHONE}`}
+document.getElementById('waCheckout').onclick=checkoutWA;
+document.getElementById('callCheckout').onclick=checkoutCall;
 renderProducts();renderCart();saveCart();
 </script>
 </body>
