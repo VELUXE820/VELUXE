@@ -3,22 +3,6 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>VELUXE ADMIN - Upload Picture</title>
-<script>
-// ===== ADMIN PIN PROTECTION =====
-(function(){
-  const ADMIN_PIN = "admin123";
-  const unlocked = sessionStorage.getItem('veluxe_admin_unlocked');
-  if(unlocked === 'yes') return;
-  const entered = prompt("🔒 VELUXE ADMIN - Enter PIN:");
-  if(entered!== ADMIN_PIN){
-    alert("❌ Wrong PIN! Access Denied");
-    window.location.href = "index.html";
-    throw new Error("Access denied");
-  } else {
-    sessionStorage.setItem('veluxe_admin_unlocked','yes');
-  }
-})();
-</script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}body{font-family:'Space Grotesk',sans-serif;background:#fafafa;padding:20px}
@@ -40,10 +24,10 @@ label{font-size:10px;font-weight:800;letter-spacing:1px;margin-bottom:4px;displa
 <body>
 <div class="box">
 <h1>VELUXE ADMIN -<br>UPLOAD PICTURE 🔥📸</h1>
-<div style="text-align:center;background:#e8f5e9;padding:8px;border-radius:10px;font-size:10px;font-weight:700;margin-bottom:15px;color:#2e7d32">✅ ADMIN UNLOCKED - PIN: admin123</div>
 
 <label>Product Name</label>
 <input id="pName" placeholder="e.g Womens Satin Dress Black">
+
 <label>Category</label>
 <select id="pCat">
 <option value="womens">WOMENS 👩</option>
@@ -52,38 +36,40 @@ label{font-size:10px;font-weight:800;letter-spacing:1px;margin-bottom:4px;displa
 <option value="shoes">SHOES</option>
 <option value="tees">TEES</option>
 </select>
+
 <label>Price ($)</label>
 <input id="pPrice" type="number" placeholder="e.g 78">
+
 <label>Old Price ($)</label>
 <input id="pOld" type="number" placeholder="e.g 105">
+
 <label>Stock Amount</label>
-<input id="pStock" type="number" placeholder="e.g 10">
+<input id="pStock" type="number" placeholder="e.g 10 - how many available">
+
 <label>Product Picture - CLICK TO UPLOAD FROM PHONE</label>
 <div class="upload-box" onclick="document.getElementById('pFile').click()">
 <div id="uploadText">📸 TAP TO CHOOSE PICTURE<br><span style="font-size:10px;color:#888">From gallery or camera</span></div>
 <input id="pFile" type="file" accept="image/*" onchange="handleFile(this)">
 </div>
 <div id="preview" class="preview"><img id="previewImg" src=""></div>
-<label>OR Image URL</label>
-<input id="pImg" placeholder="https://...">
+
+<label>OR Image URL (if you no upload picture)</label>
+<input id="pImg" placeholder="https://... or leave empty if you uploaded">
+
 <label>Badge Text</label>
-<input id="pBadge" placeholder="e.g WOMENS NEW">
+<input id="pBadge" placeholder="e.g WOMENS NEW or LOW STOCK!">
 
 <button class="btn" onclick="saveProduct()">SAVE PRODUCT WITH PICTURE</button>
 <button class="btn2" onclick="location.href='index.html'">← BACK TO STORE</button>
-<button class="btn2" onclick="logoutAdmin()" style="background:#000;color:#fff">🔒 LOGOUT ADMIN</button>
 <button class="btn2" style="border-color:red;color:red" onclick="clearAll()">CLEAR ALL CUSTOM</button>
+
 <div id="list" class="prod-list"></div>
 </div>
 
 <script>
-function logoutAdmin(){
-  sessionStorage.removeItem('veluxe_admin_unlocked');
-  alert("Logged out! 🔒");
-  location.href='index.html';
-}
 let uploadedBase64 = "";
 let products=JSON.parse(localStorage.getItem("veluxe_custom_products")||"null")||[];
+
 function handleFile(input){
 const file=input.files[0];
 if(!file)return;
@@ -97,6 +83,7 @@ document.getElementById('uploadText').innerHTML="✅ Picture ready! Tap to chang
 };
 reader.readAsDataURL(file);
 }
+
 function saveProduct(){
 const name=document.getElementById('pName').value.trim();
 const cat=document.getElementById('pCat').value;
@@ -105,16 +92,23 @@ const oldP=parseInt(document.getElementById('pOld').value)||price+20;
 const stock=parseInt(document.getElementById('pStock').value)||10;
 const urlImg=document.getElementById('pImg').value.trim();
 const badge=document.getElementById('pBadge').value.trim()||cat.toUpperCase();
+
 if(!name||!price) return alert("Put name and price!");
 if(!uploadedBase64 &&!urlImg) return alert("Abeg upload picture or put image URL!");
+
 const finalImg = uploadedBase64 || urlImg || "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600";
+
 const newP={id:Date.now(),name,cat,price,old:oldP,stock,img:finalImg,badge};
 products.unshift(newP);
 localStorage.setItem("veluxe_custom_products",JSON.stringify(products));
+
+// reset
 document.getElementById('pName').value="";document.getElementById('pPrice').value="";document.getElementById('pOld').value="";document.getElementById('pStock').value="";document.getElementById('pImg').value="";document.getElementById('pBadge').value="";document.getElementById('pFile').value="";uploadedBase64="";document.getElementById('preview').style.display='none';document.getElementById('uploadText').innerHTML='📸 TAP TO CHOOSE PICTURE<br><span style="font-size:10px;color:#888">From gallery or camera</span>';
+
 renderList();
 alert(`Saved! ${name} with picture + ${stock} stock ✅`);
 }
+
 function renderList(){
 document.getElementById('list').innerHTML=products.map((p,i)=>`<div class="p-item"><div class="p-img"><img src="${p.img}"></div><div style="flex:1"><div style="font-size:11px;font-weight:700">${p.name}</div><div style="font-size:10px;color:#888">${p.cat} • $${p.price} • Stock: ${p.stock} • ${p.badge}</div></div><button onclick="deleteProd(${i})" style="background:#000;color:#fff;border:0;padding:6px 12px;border-radius:8px;font-size:10px;cursor:pointer">DEL</button></div>`).join("");
 }
