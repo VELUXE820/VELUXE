@@ -1,33 +1,150 @@
 <!DOCTYPE html>
-<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>VELUXE ADMIN</title>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>VELUXE ADMIN - Upload Picture</title>
 <script>
 const PIN="admin123";
 if(sessionStorage.getItem('veluxe_ok')!=='yes'){
-  let p=prompt("ADMIN PIN:");
+  let p=prompt("ADMIN PIN: admin123");
   if(p!==PIN){alert("Wrong PIN!"); location.href="index.html";}
   else sessionStorage.setItem('veluxe_ok','yes');
 }
 </script>
-<style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:sans-serif;background:#f5f5f5;padding:20px} .box{background:#fff;padding:20px;border-radius:16px;max-width:500px;margin:20px auto} input,select{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-bottom:10px} button{width:100%;height:45px;background:#000;color:#fff;border:0;border-radius:12px;font-weight:700;cursor:pointer}</style>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:Space Grotesk,sans-serif;background:#f5f5f5;padding:15px}
+.box{background:#fff;padding:20px;border-radius:20px;max-width:520px;margin:10px auto;box-shadow:0 5px 20px rgba(0,0,0,.05)}
+h2{font-weight:800;letter-spacing:1px;display:flex;align-items:center;gap:8px}
+input,select{width:100%;padding:14px;border:1px solid #e5e7eb;border-radius:12px;margin-bottom:12px;outline:none;font-size:14px}
+input:focus{border-color:#000}
+.upload-area{border:2px dashed #ddd;border-radius:16px;padding:20px;text-align:center;margin-bottom:12px;background:#fafafa;cursor:pointer;position:relative;overflow:hidden}
+.upload-area:hover{border-color:#000;background:#f0f0f0}
+.upload-area img{width:100%;max-height:200px;object-fit:cover;border-radius:12px;margin-top:10px}
+.upload-area.has-img{border-style:solid;border-color:#00b050;background:#eefbf5}
+.btn{width:100%;height:50px;background:#000;color:#fff;border:0;border-radius:14px;font-weight:800;letter-spacing:1px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn:disabled{background:#ddd}
+.preview{width:100%;height:180px;background:#f5f5f5;border-radius:12px;object-fit:cover;display:none;margin-bottom:10px}
+.note{font-size:10px;color:#888;background:#fafafa;padding:10px;border-radius:10px;margin:10px 0;line-height:1.5}
+.prod{padding:14px 0;border-bottom:1px solid #eee;display:flex;gap:12px;align-items:center}
+.prod img{width:60px;height:70px;object-fit:cover;border-radius:10px;background:#f5f5f5}
+</style>
 </head><body>
 <div class="box">
-<h2><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> VELUXE ADMIN</h2>
-<p style="font-size:12px;color:#888;margin:10px 0">PIN: admin123 - Add products here</p>
-<input id="name" placeholder="Product Name">
-<input id="price" type="number" placeholder="Price">
-<input id="old" type="number" placeholder="Old Price">
-<input id="img" placeholder="Image URL">
-<select id="cat"><option value="mens">MENS</option><option value="womens">WOMENS</option><option value="baby">BABY</option><option value="shoes">SHOES</option></select>
-<input id="stock" type="number" placeholder="Stock">
-<button onclick="addP()">ADD PRODUCT</button>
-<hr style="margin:20px 0"><div id="list"></div>
-<div style="margin-top:20px;display:flex;gap:10px"><a href="index.html" style="flex:1;text-align:center;padding:12px;background:#eee;border-radius:10px;text-decoration:none;color:#000">Back to Store</a><a href="#" onclick="sessionStorage.removeItem('veluxe_ok');location.href='index.html'" style="flex:1;text-align:center;padding:12px;background:#fee2e2;border-radius:10px;text-decoration:none;color:#991b1b">Logout</a></div>
+<h2><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> VELUXE ADMIN</h2>
+<p style="font-size:11px;color:#888;margin:8px 0">Upload picture from phone - No URL needed!</p>
+
+<input id="name" placeholder="Product Name e.g. Mens Black Tee">
+<input id="price" type="number" placeholder="Price e.g. 68">
+<input id="old" type="number" placeholder="Old Price e.g. 90 (optional)">
+<select id="cat"><option value="mens">MENS</option><option value="womens">WOMENS</option><option value="baby">BABY</option><option value="shoes">SHOES</option><option value="tees">TEES</option></select>
+<input id="stock" type="number" placeholder="Stock e.g. 15">
+
+<!-- NEW UPLOAD SECTION -->
+<div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
+<input type="file" id="fileInput" accept="image/*" style="display:none" onchange="handleFile(this)">
+<div id="uploadText">
+<svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+<div style="font-weight:700;margin-top:8px;font-size:12px">TAP TO UPLOAD PICTURE</div>
+<div style="font-size:10px;color:#888;margin-top:4px">From phone gallery / camera</div>
 </div>
+<img id="preview" class="preview">
+<div id="fileName" style="font-size:11px;font-weight:700;margin-top:8px;display:none"></div>
+</div>
+
+<div class="note">
+<b>How e dey work:</b><br>
+1. Tap box above → choose picture from phone<br>
+2. Picture go show preview instantly<br>
+3. Or paste URL for box below if you get link<br>
+If you upload file, e go use that one. If you no upload, e go use URL.
+</div>
+
+<input id="img" placeholder="OR paste Image URL (optional) - https://...">
+
+<button class="btn" id="addBtn" onclick="addP()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> ADD PRODUCT TO STORE</button>
+
+<hr style="margin:20px 0;border:0;border-top:1px solid #eee">
+<h3 style="font-size:12px;letter-spacing:1px;margin-bottom:10px">YOUR PRODUCTS (Tap delete to comot)</h3>
+<div id="list"></div>
+
+<div style="margin-top:20px;display:flex;gap:10px">
+<a href="index.html" style="flex:1;text-align:center;padding:14px;background:#f3f4f6;border-radius:12px;text-decoration:none;color:#000;font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center;gap:6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg> STORE</a>
+<a href="#" onclick="sessionStorage.removeItem('veluxe_ok');location.href='index.html'" style="flex:1;text-align:center;padding:14px;background:#fee2e2;border-radius:12px;text-decoration:none;color:#991b1b;font-weight:700;font-size:12px">LOGOUT</a>
+</div>
+</div>
+
 <script>
-let products=JSON.parse(localStorage.getItem("veluxe_custom_products")||"null")||[{id:100,name:"Womens Satin Dress Black",price:78,old:105,cat:"womens",stock:7,img:"https://images.unsplash.com/photo-1515372039744-b8f02a3c67ae?w=600",badge:"WOMENS"},{id:60,name:"Mens VELUXE Stripe Shirt REAL",price:68,old:90,cat:"mens",stock:15,img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600",badge:"MENS REAL"},{id:52,name:"Baby Onesie Cream Bear",price:25,old:35,cat:"baby",stock:30,img:"https://images.unsplash.com/photo-1522771930-78848d9293e8?w=600",badge:"BABY"}];
-function render(){document.getElementById('list').innerHTML=products.map((p,i)=>`<div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #eee"><span style="font-size:12px">${p.name} - $${p.price}</span><button onclick="products.splice(${i},1);save();render()" style="width:auto;padding:6px 12px;background:#ff3b30">Del</button></div>`).join("")}
-function save(){localStorage.setItem("veluxe_custom_products",JSON.stringify(products))}
-function addP(){const n=document.getElementById('name').value, pr=Number(document.getElementById('price').value), old=Number(document.getElementById('old').value)||pr+20, im=document.getElementById('img').value, c=document.getElementById('cat').value, st=Number(document.getElementById('stock').value)||10; if(!n||!pr) return alert("Enter name & price"); products.unshift({id:Date.now(),name:n,price:pr,old:old,cat:c,stock:st,img:im||"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600",badge:c.toUpperCase()}); save(); render(); alert("Added!");}
+let products=JSON.parse(localStorage.getItem("veluxe_custom_products")||"null")||[];
+let uploadedImageData=""; // base64
+
+function handleFile(input){
+  const file=input.files[0];
+  if(!file) return;
+  if(file.size> 3*1024*1024){alert("Picture too big! Choose picture wey less than 3MB"); return;}
+  const reader=new FileReader();
+  reader.onload=function(e){
+    uploadedImageData=e.target.result; // base64
+    const preview=document.getElementById('preview');
+    preview.src=uploadedImageData;
+    preview.style.display='block';
+    document.getElementById('uploadText').style.display='none';
+    document.getElementById('fileName').style.display='block';
+    document.getElementById('fileName').textContent="✓ "+file.name+" ("+Math.round(file.size/1024)+"KB)";
+    document.getElementById('uploadArea').classList.add('has-img');
+    document.getElementById('img').placeholder="File uploaded - URL no needed again";
+  };
+  reader.readAsDataURL(file);
+}
+
+function render(){
+  if(!products.length){document.getElementById('list').innerHTML='<div style="padding:20px;text-align:center;color:#999;font-size:12px">No products yet<br>Add one above</div>'; return;}
+  document.getElementById('list').innerHTML=products.map((p,i)=>`
+    <div class="prod">
+      <img src="${p.img}" onerror="this.src='https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600'">
+      <div style="flex:1"><div style="font-size:12px;font-weight:700">${p.name}</div><div style="font-size:11px;color:#888">$${p.price} • ${p.stock} left • ${p.cat}</div></div>
+      <button onclick="products.splice(${i},1);save();render()" style="width:auto;padding:8px 14px;background:#ff3b30;border-radius:10px;border:0;color:#fff;font-weight:700;font-size:11px">DEL</button>
+    </div>
+  `).join("");
+}
+function save(){localStorage.setItem("veluxe_custom_products",JSON.stringify(products));}
+function addP(){
+  const n=document.getElementById('name').value.trim();
+  const pr=Number(document.getElementById('price').value);
+  const old=Number(document.getElementById('old').value)||pr+25;
+  const url=document.getElementById('img').value.trim();
+  const c=document.getElementById('cat').value;
+  const st=Number(document.getElementById('stock').value)||10;
+
+  // Use uploaded image if available, else URL, else placeholder
+  let finalImg=uploadedImageData || url || "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600";
+
+  if(!n){alert("Put product name!"); return;}
+  if(!pr){alert("Put price!"); return;}
+  if(!uploadedImageData &&!url){ if(!confirm("You never upload picture - e go use default picture. Continue?")) return; }
+
+  const btn=document.getElementById('addBtn');
+  btn.textContent="ADDING...";
+  btn.disabled=true;
+
+  setTimeout(()=>{
+    products.unshift({id:Date.now(),name:n,price:pr,old:old,cat:c,stock:st,img:finalImg,badge:c.toUpperCase()});
+    save();
+    render();
+    // reset
+    document.getElementById('name').value="";
+    document.getElementById('price').value="";
+    document.getElementById('old').value="";
+    document.getElementById('img').value="";
+    document.getElementById('stock').value="";
+    document.getElementById('fileInput').value="";
+    uploadedImageData="";
+    document.getElementById('preview').style.display='none';
+    document.getElementById('preview').src="";
+    document.getElementById('uploadText').style.display='block';
+    document.getElementById('fileName').style.display='none';
+    document.getElementById('uploadArea').classList.remove('has-img');
+    btn.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> ADD PRODUCT TO STORE';
+    btn.disabled=false;
+    alert("✓ Product added! Go to store to see am. Picture don save!");
+  },400);
+}
 render();
 </script>
 </body></html>
